@@ -7,9 +7,6 @@
 <a href="https://apps.apple.com/us/app/iwallet-expenses-and-income/id6447585809"><img alt="AppStore" src="https://github.com/idevnva/iWallet/assets/127990298/bb58e43e-e24b-4692-994a-33b00efed2d1"  width="168"/></a>
 <a href="https://idevnva.com/iwallet"><img alt="Web site" src="https://github.com/idevnva/iWallet/assets/127990298/5716a31a-89f6-4fca-bc63-c6bc2272633b"  width="168"/></a>
 
-
-
-
 ## You can
 * Calculate the average expense per day, taking into account all financial transactions, for more accurate planning and control of your budget.
 
@@ -24,6 +21,8 @@
 * iWallet is a reliable financial management assistant: track all income and expenses with high accuracy (including date, category and notes) and control your finances with convenience.
 
 * Be aware of your financial flows and make informed decisions about your money.
+
+![iWalletTeam](https://github.com/iWalletTeam/iWallet/assets/127990298/41e45886-da1c-445c-b5d0-e5c3a2605a30)
 
 ## Our team
 * Our team is working on the development of iWallet — an open source project that allows users to manage their finances more efficiently. We believe that everyone should have access to a quality tool to keep track of their income and expenses.
