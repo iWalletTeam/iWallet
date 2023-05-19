@@ -2,9 +2,9 @@
 
 ![iWallet](https://github.com/idevnva/iWallet/assets/127990298/5f509056-3207-4b3e-8995-4be1347d28c6)
 
-<h2 align="center">
+<h3 align="center">
 It is a personal finance management assessment tool that will help you keep track of your income and expenses, keep an eye on your budget, and achieve your financial goals. Install iWallet and enjoy complete control over your finances!
-</h2>
+</h3>
   
 <h3 align="center">
 <p float="left">
