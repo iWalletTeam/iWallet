@@ -42,7 +42,7 @@ It is a personal finance management assessment tool that will help you keep trac
 * Our team consists of beginner developers, designers and a huge amount of motivation. We work with open source to ensure that our project is transparent and accessible to everyone. We also welcome contributions from the community and encourage participation in iWallet development.
 
 ## IWALLET TEAM
-> " Our goal is to make iWallet the best financial accounting tool available to everyone. We believe that every person deserves financial stability and we do our best to help them achieve this goal. "
+> ## " Our goal is to make iWallet the best financial accounting tool available to everyone. We believe that every person deserves financial stability and we do our best to help them achieve this goal. "
 
 ![iWallet](https://github.com/idevnva/iWallet/assets/127990298/c1397684-89f4-4d84-b936-4c32f6962dfc)
 
