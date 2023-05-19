@@ -1,0 +1,111 @@
+/* 
+  Localizable.strings
+  iWallet
+
+  Created by Владислав Новошинский on 13.04.2023.
+  
+*/
+
+// HomeView
+"Balance" = "Balance";
+"Expense average" = "Expense average";
+"Income" = "Income";
+"Expense" = "Expense";
+"Settings" = "Settings";
+
+// AddTransaction
+"Enter amount:" = "Enter amount:";
+"Note" = "Note";
+"Enter note:" = "Enter note:";
+"Category type" = "Category type";
+"Category" = "Category";
+"Purpose:" = "Purpose:";
+"Date" = "Date";
+"Enter date:" = "Enter date:";
+"Cancel" = "Cancel";
+"Add" = "Add";
+"Please enter amount" = "Please enter amount";
+"Please select a category" = "Please select a category";
+"Okay" = "Okay";
+
+// TransactionView
+"Transactions" = "Transactions";
+"Back" = "Back";
+
+// AddCategoryView
+"Welcome" = "Welcome";
+"The list of categories is currently empty," = "The list of categories is currently empty,";
+"please add category." = "please add category.";
+"Back" = "Back";
+"New" = "New";
+
+// AddCategory
+"Select type:" = "Select type:";
+"Name" = "Name";
+"Enter Name" = "Enter Name";
+"Choose an icon:" = "Choose an icon:";
+"Choose color:" = "Choose color:";
+"Create a category" = "Create a category";
+"Back" = "Back";
+"Add" = "Add";
+
+// SettingView
+"Back" = "Back";
+"Settings" = "Settings";
+"Transactions" = "Transactions";
+"Categories" = "Categories";
+"Data" = "Data";
+"Web-site" = "Web-site";
+"Community" = "Community";
+"Write to the developer" = "Write to the developer";
+"Feedback" = "Feedback";
+"Application" = "Application";
+"Currency" = "Currency";
+"Vibration" = "Vibration";
+"https://idevnva.com/" = "https://idevnva.com/iwallet/en";
+"https://t.me/iwalletapp" = "https://t.me/iwallet_en";
+"https://t.me/idevnva" = "https://t.me/idevnva";
+
+//PreviewCard
+"Welcome" = "Welcome!";
+"The list of transactions is currently empty," = "The list of transactions is currently empty,";
+"please add transaction." = "please add transaction.";
+
+// DefaultCategories
+// Все категории для расхода
+"Car" = "Car";
+"Bank" = "Bank";
+"Business services" = "Business services";
+"Charity" = "Charity";
+"State" = "State";
+"Children" = "Children";
+"House" = "House";
+"Pets" = "Pets";
+"Eating out" = "Eating out";
+"Health" = "Health";
+"Beauty" = "Beauty";
+"Mobile connection" = "Mobile connection";
+"Education" = "Education";
+"Clothing and footwear" = "Clothing and footwear";
+"Present" = "Present";
+"Food" = "Food";
+"Trips" = "Trips";
+"Entertainment" = "Entertainment";
+"Technique" = "Technique";
+"Transport" = "Transport";
+// Все категории для дохода
+"Rent" = "Rent";
+"Exchange" = "Exchange";
+"Dividends" = "Dividends";
+"Wage" = "Wage";
+"Present" = "Present";
+"Part time job" = "Part time job";
+"Interest on accounts" = "Interest on accounts";
+
+// WelcomeView
+"Welcome to the iWallet!" = "Welcome to the iWallet!";
+"Currency" = "Currency";
+"Initial application setup" = "Initial application setup:";
+"Basic categories" = "Basic categories";
+"Note: Enabling this feature will create base categories for expenses and income." = "Note: Enabling this feature will create base categories for expenses and income.";
+"Continue" = "Continue";

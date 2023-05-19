@@ -1,0 +1,111 @@
+/* 
+  Localizable.strings
+  iWallet
+
+  Created by Владислав Новошинский on 13.04.2023.
+  
+*/
+
+// HomeView
+"Balance" = "Баланс";
+"Expense average" = "Средний расход";
+"Income" = "Доход";
+"Expense" = "Расход";
+"Settings" = "Настройки";
+
+// AddTransaction
+"Enter amount:" = "Введите сумму:";
+"Note" = "Заметка";
+"Enter note:" = "Введите заметку:";
+"Category type" = "Тип категории";
+"Category" = "Категория";
+"Purpose:" = "Назначание:";
+"Date" = "Дата";
+"Enter date:" = "Введите дату:";
+"Cancel" = "Отменить";
+"Add" = "Добавить";
+"Please enter amount" = "Пожалуйста введите сумму";
+"Please select a category" = "Пожалуйста, выберите категорию";
+"Okay" = "Хорошо";
+
+// TransactionView
+"Transactions" = "Транзакции";
+"Back" = "Назад";
+
+// AddCategoryView
+"Welcome" = "Добро пожаловать!";
+"The list of categories is currently empty," = "Список категорий в настоящее время пуст,";
+"please add category." = "пожалуйста добавьте категорию.";
+"Back" = "Назад";
+"New" = "Новая";
+
+// AddCategory
+"Select type:" = "Выберите тип:";
+"Name" = "Название";
+"Enter Name" = "Введите название";
+"Choose an icon:" = "Выберите иконку:";
+"Choose color:" = "Выберите цвет:";
+"Create a category" = "Создание категории";
+"Back" = "Назад";
+"Add" = "Добавить";
+
+// SettingView
+"Back" = "Назад";
+"Settings" = "Настройки";
+"Transactions" = "Транзакции";
+"Categories" = "Категории";
+"Data" = "Данные";
+"Web-site" = "Веб-сайт";
+"Community" = "Сообщество";
+"Write to the developer" = "Написать разработчику";
+"Feedback" = "Обратная звязь";
+"Application" = "Приложение";
+"Currency" = "Валюта";
+"Vibration" = "Вибрация";
+"https://idevnva.com/" = "https://idevnva.com/iwallet/ru";
+"https://t.me/iwalletapp" = "https://t.me/iwallet_ru";
+"https://t.me/idevnva" = "https://t.me/idevnva";
+
+//PreviewCard
+"Welcome" = "Добро пожаловать!";
+"The list of transactions is currently empty," = "Список транзакций в настоящее время пуст,";
+"please add transaction." = "пожалуйста добавьте транзакцию.";
+
+// DefaultCategories
+// Все категории для расхода
+"Car" = "Автомобиль";
+"Bank" = "Банк";
+"Business services" = "Бизнес услуги";
+"Charity" = "Благотворительность";
+"State" = "Государство";
+"Children" = "Дети";
+"House" = "Дом";
+"Pets" = "Домашние животные";
+"Eating out" = "Еда вне дома";
+"Health" = "Здоровье";
+"Beauty" = "Красота";
+"Mobile connection" = "Мобильная связь";
+"Education" = "Образование";
+"Clothing and footwear" = "Одежда и обувь";
+"Present" = "Подарки";
+"Food" = "Продукты питания";
+"Trips" = "Путешествие";
+"Entertainment" = "Развлечение";
+"Technique" = "Техника";
+"Transport" = "Транспорт";
+// Все категории для дохода
+"Rent" = "Аренда";
+"Exchange" = "Биржа";
+"Dividends" = "Дивиденды";
+"Wage" = "Заработная плата";
+"Present" = "Подарки";
+"Part time job" = "Подработка";
+"Interest on accounts" = "Проценты по счетам";
+
+// WelcomeView
+"Welcome to the iWallet!" = "Добро пожаловать в iWallet!";
+"Currency" = "Валюта";
+"Initial application setup" = "Первоначальная настройка приложения:";
+"Basic categories" = "Базовые категории";
+"Note: Enabling this feature will create base categories for expenses and income." = "Примечание. При включении этой функции будут созданы базовые категории расходов и доходов.";
+"Continue" = "Продолжить";
