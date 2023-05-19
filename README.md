@@ -9,7 +9,7 @@
     <img src="https://img.shields.io/badge/App Store-0D96F6?style=flat" height="40">
   </a>
   <a href="https://idevnva.com/iwallet">
-    <img src="https://img.shields.io/badge/Web site-FFC46B?style=flat" height="40">
+    <img src="https://img.shields.io/badge/Web site-782FEF?style=flat" height="40">
   </a>
 </p>
 
