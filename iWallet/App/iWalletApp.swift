@@ -14,8 +14,6 @@ struct iWalletApp: App {
     @AppStorage("playFeedbackHaptic") private var selectedFeedbackHaptic: Bool = true
     
     var body: some Scene {
-        let _ = print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.path)
-        
         WindowGroup {
             if !hasRunBefore {
                 withAnimation {

@@ -1,8 +1,8 @@
 //
-//  playFeedbackHaptic.swift
+//  PlayFeedbackHaptic.swift
 //  iWallet
 //
-//  Created by Владислав Новошинский on 15.04.2023.
+//  Created by Vladislav Novoshinskiy on 24.05.2023.
 //
 
 import SwiftUI

@@ -5,28 +5,12 @@ import RealmSwift
 
 final class SceneViewModel: ObservableObject {
     @Published var categories: [Category] = []
-    @Published var transactions: [TransactionItem] = []
+    @Published var transactions: [Transaction] = []
     
     init() {
         let config = Realm.Configuration(schemaVersion: 15)
         Realm.Configuration.defaultConfiguration = config
         loadData()
-    }
-    
-    func clearDatabase() {
-        guard let realm = try? Realm() else {
-            print("Ошибка: clearDatabase")
-            return
-        }
-        
-        do {
-            try realm.write {
-                realm.deleteAll()
-                loadData()
-            }
-        } catch {
-            print("Ошибка при удалении данных: \(error.localizedDescription)")
-        }
     }
     
     // Метод для загрузки базы
@@ -37,7 +21,7 @@ final class SceneViewModel: ObservableObject {
         }
         
         let categoriesResult = realm.objects(Category.self)
-        let transactionsResult = realm.objects(TransactionItem.self)
+        let transactionsResult = realm.objects(Transaction.self)
         
         categories = Array(categoriesResult)
         transactions = Array(transactionsResult)
@@ -53,7 +37,7 @@ extension SceneViewModel {
             return
         }
         
-        let defaultCategory = defaultCategories
+        let defaultCategory = defaultCategoriesModel
         
         try! realm.write {
             for category in defaultCategory {
@@ -90,7 +74,7 @@ extension SceneViewModel {
             return
         }
         if let newCategory = realm.object(ofType: Category.self, forPrimaryKey: category.id) {
-            let newTransaction = TransactionItem()
+            let newTransaction = Transaction()
             newTransaction.categoryId = newCategory.id
             newTransaction.amount = amount
             newTransaction.date = date
@@ -136,7 +120,7 @@ extension SceneViewModel {
         do {
             let realm = try Realm()
             
-            if let transaction = realm.object(ofType: TransactionItem.self, forPrimaryKey: id) {
+            if let transaction = realm.object(ofType: Transaction.self, forPrimaryKey: id) {
                 try realm.write {
                     if let category = transaction.category.first {
                         if let index = category.transactions.firstIndex(of: transaction) {
@@ -179,27 +163,6 @@ extension SceneViewModel {
     // Считает балланс
     func balance() -> Float {
         return totalIncomes() - totalExpenses()
-    }
-    
-    // Не нужная функция оставил вдруг понадобиться
-    // Расчет средней суммы за день, сначала найдем общее количество дней между самой ранней и самой поздней транзакцией, а затем разделим общую сумму транзакций на количество дней
-    func averageDailyAmount() -> Float {
-        guard let earliestTransaction = transactions.min(by: { $0.date < $1.date }),
-              let latestTransaction = transactions.max(by: { $0.date < $1.date }) else {
-            return 0
-        }
-        
-        let calendar = Calendar.current
-        let components = calendar.dateComponents([.day], from: earliestTransaction.date, to: latestTransaction.date)
-        guard let days = components.day, days > 0 else {
-            return 0
-        }
-        
-        let totalAmount = transactions.reduce(0) { (result, transaction) -> Float in
-            return result + transaction.amount
-        }
-        
-        return totalAmount / Float(days)
     }
     
     // Расчет среднего расхода за день, сначала найдем общее количество дней c транзакциями, а затем разделим общую сумму расходных транзакций на количество дней

@@ -1,11 +1,14 @@
-//  DefaultCategories.swift
+//
+//  DefaultCategoriesModel.swift
+//  iWallet
+//
+//  Created by Vladislav Novoshinskiy on 24.05.2023.
+//
 
 import Foundation
 import RealmSwift
 
-let deviceLanguage = Locale.current.language.languageCode?.identifier
-
-let defaultCategories = {
+let defaultCategoriesModel = {
     [
         // Все категории для расхода
         Category(value: ["name": NSLocalizedString("Car", comment: "Car"), "icon": "car", "color": "colorBlue", "type": CategoryType.expense] as [String : Any]),
@@ -39,4 +42,3 @@ let defaultCategories = {
         Category(value: ["name": NSLocalizedString("Interest on accounts", comment: "Interest on accounts"), "icon": "percent", "color": "colorYellow", "type": CategoryType.income] as [String : Any])
     ]
 }()
-

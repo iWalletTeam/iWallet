@@ -5,13 +5,13 @@ import RealmSwift
 
 struct TransactionCategoryView: View {
     @EnvironmentObject var viewModel: SceneViewModel
-    @ObservedResults(TransactionItem.self) var transactions
+    @ObservedResults(Transaction.self) var transactions
     
     @Binding var selectedCategory: Category
     @AppStorage("currencySymbol") private var currencySymbol: String = "USD"
     @AppStorage("playFeedbackHaptic") private var selectedFeedbackHaptic: Bool = true
     
-    var filteredTransactions: [TransactionItem] {
+    var filteredTransactions: [Transaction] {
         filterTransaction(category: selectedCategory, transactions: Array(transactions))
     }
     
@@ -98,8 +98,8 @@ struct TransactionCategoryView: View {
     }
     
     // метод фильтрации транзакции с выбранной категорией
-    private func filterTransaction(category: Category, transactions: [TransactionItem]) -> [TransactionItem] {
-        var groupedTransaction: [TransactionItem] = []
+    private func filterTransaction(category: Category, transactions: [Transaction]) -> [Transaction] {
+        var groupedTransaction: [Transaction] = []
         
         for transaction in transactions {
             if category.id == transaction.categoryId {
@@ -110,8 +110,8 @@ struct TransactionCategoryView: View {
     }
     
     // Метод для группировки транзакций по дате
-    private func transactionsByDate(_ transactions: [TransactionItem]) -> [Date: [TransactionItem]] {
-        var groupedTransactions: [Date: [TransactionItem]] = [:]
+    private func transactionsByDate(_ transactions: [Transaction]) -> [Date: [Transaction]] {
+        var groupedTransactions: [Date: [Transaction]] = [:]
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
@@ -131,12 +131,12 @@ struct TransactionCategoryView: View {
     }
     
     // метод сортировки транзакций по дате
-    private func sortTransactionsByDate(transactions: [TransactionItem]) -> [TransactionItem] {
+    private func sortTransactionsByDate(transactions: [Transaction]) -> [Transaction] {
         return transactions.sorted(by: { $0.date > $1.date })
     }
     
     // Метод удаления транзакций
-    private func deleteTransaction(at offsets: IndexSet, from sortedTransactions: [TransactionItem]) {
+    private func deleteTransaction(at offsets: IndexSet, from sortedTransactions: [Transaction]) {
         withAnimation {
             offsets.forEach { index in
                 let transaction = sortedTransactions[index]
