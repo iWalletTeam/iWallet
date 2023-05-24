@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class Transaction: Object, ObjectKeyIdentifiable {
+class TransactionItem: Object, ObjectKeyIdentifiable {
     @Persisted(primaryKey: true) var id: ObjectId = ObjectId.generate()
     @Persisted var categoryId: ObjectId = ObjectId.generate()
     @Persisted var amount: Float = 0

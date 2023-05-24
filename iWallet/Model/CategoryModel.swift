@@ -14,7 +14,7 @@ class Category: Object, ObjectKeyIdentifiable {
     @Persisted var icon: String = ""
     @Persisted var color: String = ""
     @Persisted var type: CategoryType = .expense
-    @Persisted var transactions: List<Transaction> = List<Transaction>()
+    @Persisted var transactions: List<TransactionItem> = List<TransactionItem>()
     
     // Функция проверяет, есть ли в категории транзакции с выбранным типом (доход или расход)
     func hasTransactions(type: CategoryType) -> Bool {

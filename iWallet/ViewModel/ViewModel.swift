@@ -5,13 +5,15 @@ import RealmSwift
 
 final class SceneViewModel: ObservableObject {
     @Published var categories: [Category] = []
-    @Published var transactions: [Transaction] = []
+    @Published var transactions: [TransactionItem] = []
     
     init() {
-        let config = Realm.Configuration(schemaVersion: 16)
+        let config = Realm.Configuration(schemaVersion: 15)
         Realm.Configuration.defaultConfiguration = config
         loadData()
     }
+    
+    
     
     // Метод для загрузки базы
     private func loadData() {
@@ -21,7 +23,7 @@ final class SceneViewModel: ObservableObject {
         }
         
         let categoriesResult = realm.objects(Category.self)
-        let transactionsResult = realm.objects(Transaction.self)
+        let transactionsResult = realm.objects(TransactionItem.self)
         
         categories = Array(categoriesResult)
         transactions = Array(transactionsResult)
@@ -74,7 +76,7 @@ extension SceneViewModel {
             return
         }
         if let newCategory = realm.object(ofType: Category.self, forPrimaryKey: category.id) {
-            let newTransaction = Transaction()
+            let newTransaction = TransactionItem()
             newTransaction.categoryId = newCategory.id
             newTransaction.amount = amount
             newTransaction.date = date
@@ -120,7 +122,7 @@ extension SceneViewModel {
         do {
             let realm = try Realm()
             
-            if let transaction = realm.object(ofType: Transaction.self, forPrimaryKey: id) {
+            if let transaction = realm.object(ofType: TransactionItem.self, forPrimaryKey: id) {
                 try realm.write {
                     if let category = transaction.category.first {
                         if let index = category.transactions.firstIndex(of: transaction) {

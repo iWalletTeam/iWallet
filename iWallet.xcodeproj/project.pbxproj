@@ -27,6 +27,7 @@
 		08645FE52A1E81E60059BDCB /* CurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08645FE42A1E81E60059BDCB /* CurrencyModel.swift */; };
 		08645FE72A1E824B0059BDCB /* DefaultCategoriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08645FE62A1E824B0059BDCB /* DefaultCategoriesModel.swift */; };
 		08645FE92A1E835D0059BDCB /* PlayFeedbackHaptic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08645FE82A1E835D0059BDCB /* PlayFeedbackHaptic.swift */; };
+		08645FEE2A1EA7280059BDCB /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08645FED2A1EA7280059BDCB /* CategoryViewModel.swift */; };
 		086A5A2029E34B0000D044F7 /* PreviewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086A5A1F29E34B0000D044F7 /* PreviewCard.swift */; };
 		0880C66D29E8682B00E088DB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0880C66F29E8682B00E088DB /* Localizable.strings */; };
 		0880C67529E8AB9200E088DB /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0880C67429E8AB9200E088DB /* WelcomeView.swift */; };
@@ -55,6 +56,7 @@
 		08645FE42A1E81E60059BDCB /* CurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyModel.swift; sourceTree = "<group>"; };
 		08645FE62A1E824B0059BDCB /* DefaultCategoriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCategoriesModel.swift; sourceTree = "<group>"; };
 		08645FE82A1E835D0059BDCB /* PlayFeedbackHaptic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayFeedbackHaptic.swift; sourceTree = "<group>"; };
+		08645FED2A1EA7280059BDCB /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
 		086A5A1F29E34B0000D044F7 /* PreviewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCard.swift; sourceTree = "<group>"; };
 		0880C66E29E8682B00E088DB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0880C67129E86A6500E088DB /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				08558BA529D394950047F959 /* ViewModel.swift */,
+				08645FED2A1EA7280059BDCB /* CategoryViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				08558B9A29D36D6D0047F959 /* SettingView.swift in Sources */,
 				0880C67529E8AB9200E088DB /* WelcomeView.swift in Sources */,
 				08558B8829D35EA40047F959 /* HomeView.swift in Sources */,
+				08645FEE2A1EA7280059BDCB /* CategoryViewModel.swift in Sources */,
 				08645FE72A1E824B0059BDCB /* DefaultCategoriesModel.swift in Sources */,
 				08645FDE2A1E808E0059BDCB /* CategoryTypeModel.swift in Sources */,
 				08645FE52A1E81E60059BDCB /* CurrencyModel.swift in Sources */,

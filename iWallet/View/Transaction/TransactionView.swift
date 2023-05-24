@@ -7,7 +7,7 @@ struct TransactionView: View {
     @EnvironmentObject var viewModel: SceneViewModel
     @Environment(\.dismiss) var dismiss
     
-    @ObservedResults(Transaction.self) var transactions
+    @ObservedResults(TransactionItem.self) var transactions
     @ObservedResults(Category.self) var categories
     
     @AppStorage("currencySymbol") private var currencySymbol: String = "USD"
@@ -63,7 +63,7 @@ struct TransactionView: View {
     }
     
     // Метод для оптимизации отображения списка
-    private func transactionRow(transaction: Transaction, category: Category) -> some View {
+    private func transactionRow(transaction: TransactionItem, category: Category) -> some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack {
                 HStack {
@@ -116,7 +116,7 @@ struct TransactionView: View {
     }
     
     // Метод удаления транзакций
-    private func deleteTransaction(at offsets: IndexSet, from sortedTransactions: [Transaction]) {
+    private func deleteTransaction(at offsets: IndexSet, from sortedTransactions: [TransactionItem]) {
         withAnimation {
             offsets.forEach { index in
                 let transaction = sortedTransactions[index]
@@ -126,8 +126,8 @@ struct TransactionView: View {
     }
     
     // Метод для группировки транзакций по дате
-    private func transactionsByDate(_ transactions: [Transaction]) -> [Date: [Transaction]] {
-        var groupedTransactions: [Date: [Transaction]] = [:]
+    private func transactionsByDate(_ transactions: [TransactionItem]) -> [Date: [TransactionItem]] {
+        var groupedTransactions: [Date: [TransactionItem]] = [:]
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
@@ -147,7 +147,7 @@ struct TransactionView: View {
     }
     
     // Метод фильтрации категорий
-    private func filterCategories(categories: [Category], transaction: Transaction) -> Category? {
+    private func filterCategories(categories: [Category], transaction: TransactionItem) -> Category? {
         for category in categories {
             if category.id == transaction.categoryId {
                 return category
@@ -157,7 +157,7 @@ struct TransactionView: View {
     }
     
     // метод сортировки транзакций по дате
-    private func sortTransactionsByDate(transactions: [Transaction]) -> [Transaction] {
+    private func sortTransactionsByDate(transactions: [TransactionItem]) -> [TransactionItem] {
         return transactions.sorted(by: { $0.date > $1.date })
     }
 }
