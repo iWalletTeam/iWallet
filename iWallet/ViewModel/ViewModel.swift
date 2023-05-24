@@ -8,7 +8,7 @@ final class SceneViewModel: ObservableObject {
     @Published var transactions: [Transaction] = []
     
     init() {
-        let config = Realm.Configuration(schemaVersion: 15)
+        let config = Realm.Configuration(schemaVersion: 16)
         Realm.Configuration.defaultConfiguration = config
         loadData()
     }
