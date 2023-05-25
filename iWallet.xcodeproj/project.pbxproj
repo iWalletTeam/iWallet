@@ -20,6 +20,8 @@
 		08558BA629D394950047F959 /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08558BA529D394950047F959 /* AppViewModel.swift */; };
 		08558BA929D394F40047F959 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 08558BA829D394F40047F959 /* Realm */; };
 		08558BAB29D394F40047F959 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 08558BAA29D394F40047F959 /* RealmSwift */; };
+		086459892A201BB0006C28AB /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086459882A201BB0006C28AB /* Colors.swift */; };
+		0864598E2A20269C006C28AB /* CategoryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0864598D2A20269C006C28AB /* CategoryItemView.swift */; };
 		08645FDC2A1E80460059BDCB /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08645FDB2A1E80460059BDCB /* CategoryModel.swift */; };
 		08645FDE2A1E808E0059BDCB /* CategoryTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08645FDD2A1E808E0059BDCB /* CategoryTypeModel.swift */; };
 		08645FE02A1E80CF0059BDCB /* TransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08645FDF2A1E80CF0059BDCB /* TransactionModel.swift */; };
@@ -50,6 +52,8 @@
 		08558B9F29D381F10047F959 /* ColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
 		08558BA129D388080047F959 /* IconPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPicker.swift; sourceTree = "<group>"; };
 		08558BA529D394950047F959 /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
+		086459882A201BB0006C28AB /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		0864598D2A20269C006C28AB /* CategoryItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItemView.swift; sourceTree = "<group>"; };
 		08645FDB2A1E80460059BDCB /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 		08645FDD2A1E808E0059BDCB /* CategoryTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTypeModel.swift; sourceTree = "<group>"; };
 		08645FDF2A1E80CF0059BDCB /* TransactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionModel.swift; sourceTree = "<group>"; };
@@ -104,6 +108,7 @@
 				08558B9529D35EC70047F959 /* View */,
 				08D1C19D29E0A5E700B58CDE /* ViewModel */,
 				08558B9429D35EC00047F959 /* Model */,
+				0864598A2A201FCE006C28AB /* Resources */,
 				08645FE12A1E81730059BDCB /* Extension */,
 				08645FEA2A1E83C90059BDCB /* Other */,
 				08558B9329D35EB90047F959 /* Localizable */,
@@ -165,6 +170,14 @@
 			path = Templates;
 			sourceTree = "<group>";
 		};
+		0864598A2A201FCE006C28AB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				086459882A201BB0006C28AB /* Colors.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		08645FE12A1E81730059BDCB /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -202,6 +215,7 @@
 			children = (
 				08558B9B29D37DDC0047F959 /* CategoryView.swift */,
 				08558B9D29D380920047F959 /* AddCategory.swift */,
+				0864598D2A20269C006C28AB /* CategoryItemView.swift */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -322,6 +336,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				08645FE02A1E80CF0059BDCB /* TransactionModel.swift in Sources */,
+				086459892A201BB0006C28AB /* Colors.swift in Sources */,
 				08558BA629D394950047F959 /* AppViewModel.swift in Sources */,
 				08558B9829D35F890047F959 /* BalanceView.swift in Sources */,
 				08645FE92A1E835D0059BDCB /* PlayFeedbackHaptic.swift in Sources */,
@@ -339,6 +354,7 @@
 				08645FEE2A1EA7280059BDCB /* CategoryViewModel.swift in Sources */,
 				08645FE72A1E824B0059BDCB /* DefaultCategoriesModel.swift in Sources */,
 				08645FDE2A1E808E0059BDCB /* CategoryTypeModel.swift in Sources */,
+				0864598E2A20269C006C28AB /* CategoryItemView.swift in Sources */,
 				08645FE52A1E81E60059BDCB /* CurrencyModel.swift in Sources */,
 				08558B9C29D37DDC0047F959 /* CategoryView.swift in Sources */,
 				08558BA229D388080047F959 /* IconPicker.swift in Sources */,
