@@ -17,7 +17,7 @@
 		08558B9E29D380920047F959 /* AddCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08558B9D29D380920047F959 /* AddCategory.swift */; };
 		08558BA029D381F10047F959 /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08558B9F29D381F10047F959 /* ColorPicker.swift */; };
 		08558BA229D388080047F959 /* IconPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08558BA129D388080047F959 /* IconPicker.swift */; };
-		08558BA629D394950047F959 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08558BA529D394950047F959 /* ViewModel.swift */; };
+		08558BA629D394950047F959 /* RealmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08558BA529D394950047F959 /* RealmViewModel.swift */; };
 		08558BA929D394F40047F959 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 08558BA829D394F40047F959 /* Realm */; };
 		08558BAB29D394F40047F959 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 08558BAA29D394F40047F959 /* RealmSwift */; };
 		08645FDC2A1E80460059BDCB /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08645FDB2A1E80460059BDCB /* CategoryModel.swift */; };
@@ -28,6 +28,7 @@
 		08645FE72A1E824B0059BDCB /* DefaultCategoriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08645FE62A1E824B0059BDCB /* DefaultCategoriesModel.swift */; };
 		08645FE92A1E835D0059BDCB /* PlayFeedbackHaptic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08645FE82A1E835D0059BDCB /* PlayFeedbackHaptic.swift */; };
 		08645FEE2A1EA7280059BDCB /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08645FED2A1EA7280059BDCB /* CategoryViewModel.swift */; };
+		08645FF02A1FBD030059BDCB /* TransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08645FEF2A1FBD030059BDCB /* TransactionViewModel.swift */; };
 		086A5A2029E34B0000D044F7 /* PreviewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086A5A1F29E34B0000D044F7 /* PreviewCard.swift */; };
 		0880C66D29E8682B00E088DB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0880C66F29E8682B00E088DB /* Localizable.strings */; };
 		0880C67529E8AB9200E088DB /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0880C67429E8AB9200E088DB /* WelcomeView.swift */; };
@@ -48,7 +49,7 @@
 		08558B9D29D380920047F959 /* AddCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategory.swift; sourceTree = "<group>"; };
 		08558B9F29D381F10047F959 /* ColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
 		08558BA129D388080047F959 /* IconPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPicker.swift; sourceTree = "<group>"; };
-		08558BA529D394950047F959 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		08558BA529D394950047F959 /* RealmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmViewModel.swift; sourceTree = "<group>"; };
 		08645FDB2A1E80460059BDCB /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 		08645FDD2A1E808E0059BDCB /* CategoryTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTypeModel.swift; sourceTree = "<group>"; };
 		08645FDF2A1E80CF0059BDCB /* TransactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionModel.swift; sourceTree = "<group>"; };
@@ -57,6 +58,7 @@
 		08645FE62A1E824B0059BDCB /* DefaultCategoriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCategoriesModel.swift; sourceTree = "<group>"; };
 		08645FE82A1E835D0059BDCB /* PlayFeedbackHaptic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayFeedbackHaptic.swift; sourceTree = "<group>"; };
 		08645FED2A1EA7280059BDCB /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
+		08645FEF2A1FBD030059BDCB /* TransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewModel.swift; sourceTree = "<group>"; };
 		086A5A1F29E34B0000D044F7 /* PreviewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCard.swift; sourceTree = "<group>"; };
 		0880C66E29E8682B00E088DB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0880C67129E86A6500E088DB /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -233,8 +235,9 @@
 		08D1C19D29E0A5E700B58CDE /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				08558BA529D394950047F959 /* ViewModel.swift */,
+				08558BA529D394950047F959 /* RealmViewModel.swift */,
 				08645FED2A1EA7280059BDCB /* CategoryViewModel.swift */,
+				08645FEF2A1FBD030059BDCB /* TransactionViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -319,7 +322,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				08645FE02A1E80CF0059BDCB /* TransactionModel.swift in Sources */,
-				08558BA629D394950047F959 /* ViewModel.swift in Sources */,
+				08558BA629D394950047F959 /* RealmViewModel.swift in Sources */,
 				08558B9829D35F890047F959 /* BalanceView.swift in Sources */,
 				08645FE92A1E835D0059BDCB /* PlayFeedbackHaptic.swift in Sources */,
 				08645FE32A1E817D0059BDCB /* ExtensionFloat.swift in Sources */,
@@ -328,6 +331,7 @@
 				08D38C5029D465640078C6C4 /* AddTransaction.swift in Sources */,
 				08558BA029D381F10047F959 /* ColorPicker.swift in Sources */,
 				08645FDC2A1E80460059BDCB /* CategoryModel.swift in Sources */,
+				08645FF02A1FBD030059BDCB /* TransactionViewModel.swift in Sources */,
 				08D38C5429D48FE00078C6C4 /* TransactionView.swift in Sources */,
 				08558B9A29D36D6D0047F959 /* SettingView.swift in Sources */,
 				0880C67529E8AB9200E088DB /* WelcomeView.swift in Sources */,

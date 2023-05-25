@@ -4,7 +4,8 @@ import SwiftUI
 import RealmSwift
 
 struct AddTransaction: View {
-    @EnvironmentObject var viewModel: SceneViewModel
+    @EnvironmentObject var viewModel: RealmViewModel
+    @EnvironmentObject var transactionVM: TransactionViewModel
     @Environment(\.dismiss) var dismiss
     @ObservedResults(Category.self) var categories
     
@@ -153,7 +154,7 @@ struct AddTransaction: View {
                             alertCategory = true
                         } else {
                             playFeedbackHaptic(selectedFeedbackHaptic)
-                            viewModel.saveTransaction(amount: Float(amount) ?? 0, date: date, note: note, type: selectedType, category: selectedCategory)
+                            transactionVM.saveTransaction(amount: Float(amount) ?? 0, date: date, note: note, type: selectedType, category: selectedCategory)
                             dismiss()
                         }
                     } label: {
@@ -173,7 +174,7 @@ struct AddTransaction: View {
 
 struct AddTransaction_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModel = SceneViewModel()
+        let viewModel = RealmViewModel()
         let cofiguration = Realm.Configuration(inMemoryIdentifier: "Preview")
         
         AddTransaction(selectedCategory: Category())

@@ -4,7 +4,8 @@ import SwiftUI
 import RealmSwift
 
 struct WelcomeView: View {
-    @EnvironmentObject var viewModel: SceneViewModel
+    @EnvironmentObject var viewModel: RealmViewModel
+    @EnvironmentObject var categoryVM: CategoryViewModel
     
     @AppStorage("hasRunBefore") private var hasRunBefore = false
     @AppStorage("currencySymbol") private var currencySymbol: String = "USD"
@@ -75,7 +76,7 @@ struct WelcomeView: View {
                         hasRunBefore = true
                         currencySymbol = selectedCurrency.symbol
                         if vibrateOnSilent {
-                            viewModel.createDefaultCategories()
+                            categoryVM.createDefaultCategories()
                         }
                     } label: {
                         HStack(alignment: .center) {

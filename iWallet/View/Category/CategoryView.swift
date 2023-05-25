@@ -4,7 +4,9 @@ import SwiftUI
 import RealmSwift
 
 struct CategoryView: View {
-    @EnvironmentObject var viewModel: SceneViewModel
+    @EnvironmentObject var viewModel: RealmViewModel
+    @EnvironmentObject var categoryVM: CategoryViewModel
+    @EnvironmentObject var transactionVM: TransactionViewModel
     @ObservedResults(Category.self) var categories
     @Environment(\.dismiss) var dismiss
     
@@ -97,14 +99,15 @@ struct CategoryView: View {
     private func deleteCategory(at offsets: IndexSet) {
         let filtered = filteredCategories()
         offsets.forEach { index in
-            viewModel.deleteCategory(id: filtered[index].id)
+            categoryVM.deleteCategory(id: filtered[index].id)
+            transactionVM.loadData()
         }
     }
 }
 
 struct CategoryView_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModel = SceneViewModel()
+        let viewModel = RealmViewModel()
         let cofiguration = Realm.Configuration(inMemoryIdentifier: "Preview")
         
         CategoryView()

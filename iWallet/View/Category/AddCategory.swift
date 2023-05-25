@@ -3,7 +3,8 @@
 import SwiftUI
 
 struct AddCategory: View {
-    @EnvironmentObject var viewModel: SceneViewModel
+    @EnvironmentObject var viewModel: RealmViewModel
+    @EnvironmentObject var categoryVM: CategoryViewModel
     @Environment(\.dismiss) var dismiss
     
     @AppStorage("playFeedbackHaptic") private var selectedFeedbackHaptic: Bool = true
@@ -117,7 +118,7 @@ struct AddCategory: View {
                             
                         } else {
                             playFeedbackHaptic(selectedFeedbackHaptic)
-                            viewModel.saveCategory(name: name, icon: selectedImage, color: selectedColor, type: selectedType)
+                            categoryVM.saveCategory(name: name, icon: selectedImage, color: selectedColor, type: selectedType)
                             dismiss()
                         }
                     } label: {
@@ -136,7 +137,7 @@ struct AddCategory: View {
 
 struct AddCategory_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModel = SceneViewModel()
+        let viewModel = RealmViewModel()
         
         AddCategory()
             .environmentObject(viewModel)

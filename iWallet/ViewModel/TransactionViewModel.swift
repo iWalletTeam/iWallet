@@ -1,72 +1,28 @@
-//  ViewModel.swift
+//
+//  TransactionViewModel.swift
+//  iWallet
+//
+//  Created by Vladislav Novoshinskiy on 25.05.2023.
+//
 
 import Foundation
 import RealmSwift
 
-final class SceneViewModel: ObservableObject {
-    @Published var categories: [Category] = []
+final class TransactionViewModel: ObservableObject {
     @Published var transactions: [TransactionItem] = []
     
     init() {
-        let config = Realm.Configuration(schemaVersion: 15)
-        Realm.Configuration.defaultConfiguration = config
         loadData()
     }
     
-    
-    
-    // Метод для загрузки базы
-    private func loadData() {
+    // Метод для загрузки транзакций
+    func loadData() {
         guard let realm = try? Realm() else {
             print("Ошибка: loadData")
             return
         }
-        
-        let categoriesResult = realm.objects(Category.self)
         let transactionsResult = realm.objects(TransactionItem.self)
-        
-        categories = Array(categoriesResult)
         transactions = Array(transactionsResult)
-    }
-}
-
-extension SceneViewModel {
-    
-    // Добавления категорий по умолчанию
-    func createDefaultCategories() {
-        guard let realm = try? Realm() else {
-            print("Ошибка: Не удалось создать категории по умолчанию Realm")
-            return
-        }
-        
-        let defaultCategory = defaultCategoriesModel
-        
-        try! realm.write {
-            for category in defaultCategory {
-                realm.add(category)
-            }
-        }
-    }
-    
-    // Метод сохранения категории
-    func saveCategory(name: String, icon: String, color: String, type: CategoryType) {
-        guard let realm = try? Realm() else {
-            print("Ошибка: Не удалось создать экземпляр Realm")
-            return
-        }
-        let newCategory = Category()
-        newCategory.name = name
-        newCategory.icon = icon
-        newCategory.color = color
-        newCategory.type = type
-        do {
-            try realm.write {
-                realm.add(newCategory)
-            }
-            return print("Категория сохранена: \(newCategory)") // отладочное сообщение
-        } catch {
-            return print("Ошибка сохранения категории: \(error)") // отладочное сообщение
-        }
     }
     
     // Метод сохранения транзакции
@@ -86,34 +42,19 @@ extension SceneViewModel {
                 try realm.write {
                     newCategory.transactions.append(newTransaction)
                 }
-                transactions.append(newTransaction) // Обновите список транзакций после сохранения
-                print("Транзакция сохранена: \(newTransaction)") // Отладочное сообщение
+                
+                // Обновляю список транзакций после сохранения
+                transactions.append(newTransaction)
+                
+                // Отладочное сообщение
+                print("Транзакция сохранена: \(newTransaction)")
             } catch {
+                // Отладочное сообщение
                 print("Ошибка сохранения транзакции: \(error)")
             }
         } else {
-            print("Ошибка: категория не найдена") // Отладочное сообщение, если категория не найдена
-        }
-    }
-    
-    // Метод для удаления категории
-    func deleteCategory(id: ObjectId) {
-        do {
-            let realm = try Realm()
-            if let category = realm.object(ofType: Category.self, forPrimaryKey: id) {
-                try realm.write {
-                    // Удаление всех транзакций, связанных с категорией
-                    for transaction in category.transactions {
-                        realm.delete(transaction)
-                    }
-                    
-                    // Удаление категории
-                    realm.delete(category)
-                }
-                loadData()
-            }
-        } catch {
-            print("Error deleting category: \(error)")
+            // Отладочное сообщение, если категория не найдена
+            print("Ошибка: категория не найдена")
         }
     }
     
@@ -167,7 +108,7 @@ extension SceneViewModel {
         return totalIncomes() - totalExpenses()
     }
     
-    // Расчет среднего расхода за день, сначала найдем общее количество дней c транзакциями, а затем разделим общую сумму расходных транзакций на количество дней
+    // Расчет среднего расхода за день, сначала нахожу общее количество дней c транзакциями, а затем разделим общую сумму расходных транзакций на количество дней
     func averageDailyExpense() -> Float {
         let expenseTransactions = transactions.filter { $0.type == .expense }
         guard !expenseTransactions.isEmpty else {
@@ -187,5 +128,3 @@ extension SceneViewModel {
         return totalExpenseAmount / Float(daysWithTransactions)
     }
 }
-
-
