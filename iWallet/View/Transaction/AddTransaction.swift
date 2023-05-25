@@ -4,7 +4,7 @@ import SwiftUI
 import RealmSwift
 
 struct AddTransaction: View {
-    @EnvironmentObject var viewModel: RealmViewModel
+    @EnvironmentObject var viewModel: AppViewModel
     @EnvironmentObject var transactionVM: TransactionViewModel
     @Environment(\.dismiss) var dismiss
     @ObservedResults(Category.self) var categories
@@ -174,7 +174,7 @@ struct AddTransaction: View {
 
 struct AddTransaction_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModel = RealmViewModel()
+        let viewModel = AppViewModel()
         let cofiguration = Realm.Configuration(inMemoryIdentifier: "Preview")
         
         AddTransaction(selectedCategory: Category())

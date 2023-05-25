@@ -4,7 +4,7 @@ import SwiftUI
 import RealmSwift
 
 struct TransactionView: View {
-    @EnvironmentObject var viewModel: RealmViewModel
+    @EnvironmentObject var viewModel: AppViewModel
     @EnvironmentObject var transactionVM: TransactionViewModel
     @Environment(\.dismiss) var dismiss
     
@@ -166,6 +166,6 @@ struct TransactionView: View {
 struct TransactionView_Previews: PreviewProvider {
     static var previews: some View {
         TransactionView()
-            .environmentObject(RealmViewModel())
+            .environmentObject(AppViewModel())
     }
 }

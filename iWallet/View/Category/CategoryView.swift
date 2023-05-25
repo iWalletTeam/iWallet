@@ -4,7 +4,7 @@ import SwiftUI
 import RealmSwift
 
 struct CategoryView: View {
-    @EnvironmentObject var viewModel: RealmViewModel
+    @EnvironmentObject var viewModel: AppViewModel
     @EnvironmentObject var categoryVM: CategoryViewModel
     @EnvironmentObject var transactionVM: TransactionViewModel
     @ObservedResults(Category.self) var categories
@@ -87,7 +87,7 @@ struct CategoryView: View {
             }
         }
         .sheet(isPresented: $showAddCategory) {
-            AddCategory()
+            AddCategory(selectedType: selectedType)
         }
     }
     
@@ -107,7 +107,7 @@ struct CategoryView: View {
 
 struct CategoryView_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModel = RealmViewModel()
+        let viewModel = AppViewModel()
         let cofiguration = Realm.Configuration(inMemoryIdentifier: "Preview")
         
         CategoryView()

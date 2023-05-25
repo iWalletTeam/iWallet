@@ -4,7 +4,6 @@ import SwiftUI
 import RealmSwift
 
 struct WelcomeView: View {
-    @EnvironmentObject var viewModel: RealmViewModel
     @EnvironmentObject var categoryVM: CategoryViewModel
     
     @AppStorage("hasRunBefore") private var hasRunBefore = false

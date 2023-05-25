@@ -3,7 +3,7 @@
 import SwiftUI
 
 struct SettingView: View {
-    @EnvironmentObject var viewModel: RealmViewModel
+    @EnvironmentObject var viewModel: AppViewModel
     
     @Environment(\.dismiss) var dismiss
     @Environment(\.openURL) var openURL

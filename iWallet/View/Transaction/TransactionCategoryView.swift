@@ -4,7 +4,7 @@ import SwiftUI
 import RealmSwift
 
 struct TransactionCategoryView: View {
-    @EnvironmentObject var viewModel: RealmViewModel
+    @EnvironmentObject var viewModel: AppViewModel
     @EnvironmentObject var transactionVM: TransactionViewModel
     @ObservedResults(TransactionItem.self) var transactions
     

@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-final class RealmViewModel: ObservableObject {
+final class AppViewModel: ObservableObject {
     
     init() {
         let config = Realm.Configuration(schemaVersion: 15)
@@ -16,6 +16,8 @@ final class RealmViewModel: ObservableObject {
     }
     
 }
+
+
 
 
 
