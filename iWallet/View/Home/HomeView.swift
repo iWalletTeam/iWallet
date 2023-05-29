@@ -55,7 +55,10 @@ struct HomeView: View {
                         let categoriesWithTransactionsArray = categoriesWithTransaction(categories: categories)
                         
                         // фильтруем категории по типу
-                        let filteredCategoriesArray =  filteredCategories(categories: categoriesWithTransactionsArray, type: selectedCategoryType)
+                        var filteredCategoriesArray =  filteredCategories(categories: categoriesWithTransactionsArray, type: selectedCategoryType)
+                        
+                        // сортируем категории по сумме
+                        let _: () = filteredCategoriesArray.sort(by: { $0.categoryAmount(type: selectedCategoryType) > $1.categoryAmount(type: selectedCategoryType)})
                         
                         if filteredCategoriesArray.isEmpty {
                             previewCard()
