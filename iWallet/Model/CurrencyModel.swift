@@ -37,6 +37,7 @@ enum Currency: String, CaseIterable, Identifiable, Hashable {
     case uah = "UAH"
     case kzt = "KZT"
     case tmt = "TMT"
+    case czk = "CZK"
     
     var id: String {
         return self.rawValue
@@ -72,7 +73,8 @@ enum Currency: String, CaseIterable, Identifiable, Hashable {
             .byn: "Br",
             .uah: "₴",
             .kzt: "₸",
-            .tmt: "m"
+            .tmt: "m",
+            .czk: "Kč"
         ]
         return currencySymbols[self] ?? ""
     }

@@ -146,13 +146,8 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModel = AppViewModel()
-        let transactionVM = TransactionViewModel()
-        let cofiguration = Realm.Configuration(inMemoryIdentifier: "Preview")
-        
         HomeView()
-            .environmentObject(viewModel)
-            .environmentObject(transactionVM)
-            .environment(\.realmConfiguration, cofiguration)
+            .environmentObject(AppViewModel())
+            .environmentObject(TransactionViewModel())
     }
 }

@@ -23,14 +23,12 @@ struct AddTransaction: View {
     @State var alertAmount: Bool = false
     @State var alertCategory: Bool = false
     
-    
     var body: some View {
         NavigationStack {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(alignment: .leading) {
                         Section {
-                            if selectedType == .expense {
-                                TextField("-100 \(currencySymbol)", text: $amount)
+                            TextField(selectedType == .expense ? "-100 \(currencySymbol)" : "+100 \(currencySymbol)", text: $amount)
                                     .font(.title3)
                                     .keyboardType(.decimalPad)
                                     .padding()
@@ -39,17 +37,6 @@ struct AddTransaction: View {
                                     .cornerRadius(10)
                                     .padding(.bottom, 15)
                                     .focused($amountIsFocused)
-                            } else {
-                                TextField("+100 \(currencySymbol)", text: $amount)
-                                    .font(.title3)
-                                    .keyboardType(.decimalPad)
-                                    .padding()
-                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                    .background(Color("colorBalanceBG"))
-                                    .cornerRadius(10)
-                                    .padding(.bottom, 15)
-                                    .focused($amountIsFocused)
-                            }
                         } header: {
                             Text("Enter amount:")
                                 .font(.caption).textCase(.uppercase)

@@ -4,7 +4,6 @@ import SwiftUI
 import RealmSwift
 
 struct CategoryView: View {
-    @EnvironmentObject var viewModel: AppViewModel
     @EnvironmentObject var categoryVM: CategoryViewModel
     @EnvironmentObject var transactionVM: TransactionViewModel
     @ObservedResults(Category.self) var categories
@@ -107,11 +106,6 @@ struct CategoryView: View {
 
 struct CategoryView_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModel = AppViewModel()
-        let cofiguration = Realm.Configuration(inMemoryIdentifier: "Preview")
-        
         CategoryView()
-            .environmentObject(viewModel)
-            .environment(\.realmConfiguration, cofiguration)
     }
 }
