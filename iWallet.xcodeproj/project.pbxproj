@@ -34,6 +34,7 @@
 		086A5A2029E34B0000D044F7 /* PreviewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086A5A1F29E34B0000D044F7 /* PreviewCard.swift */; };
 		0880C66D29E8682B00E088DB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0880C66F29E8682B00E088DB /* Localizable.strings */; };
 		0880C67529E8AB9200E088DB /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0880C67429E8AB9200E088DB /* WelcomeView.swift */; };
+		08A2C2752A24C77400B8FA6D /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A2C2742A24C77400B8FA6D /* Icons.swift */; };
 		08AE95FF29E3236600F8AFA7 /* TransactionCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AE95FE29E3236600F8AFA7 /* TransactionCategoryView.swift */; };
 		08D38C5029D465640078C6C4 /* AddTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D38C4F29D465640078C6C4 /* AddTransaction.swift */; };
 		08D38C5429D48FE00078C6C4 /* TransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D38C5329D48FE00078C6C4 /* TransactionView.swift */; };
@@ -67,6 +68,7 @@
 		0880C66E29E8682B00E088DB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0880C67129E86A6500E088DB /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0880C67429E8AB9200E088DB /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		08A2C2742A24C77400B8FA6D /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
 		08AE95FE29E3236600F8AFA7 /* TransactionCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCategoryView.swift; sourceTree = "<group>"; };
 		08D38C4F29D465640078C6C4 /* AddTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransaction.swift; sourceTree = "<group>"; };
 		08D38C5329D48FE00078C6C4 /* TransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionView.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				086459882A201BB0006C28AB /* Colors.swift */,
+				08A2C2742A24C77400B8FA6D /* Icons.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08A2C2752A24C77400B8FA6D /* Icons.swift in Sources */,
 				08645FE02A1E80CF0059BDCB /* TransactionModel.swift in Sources */,
 				086459892A201BB0006C28AB /* Colors.swift in Sources */,
 				08558BA629D394950047F959 /* AppViewModel.swift in Sources */,
