@@ -4,7 +4,8 @@ import SwiftUI
 import RealmSwift
 
 struct AddTransaction: View {
-    @EnvironmentObject var viewModel: SceneViewModel
+    @EnvironmentObject var viewModel: AppViewModel
+    @EnvironmentObject var transactionVM: TransactionViewModel
     @Environment(\.dismiss) var dismiss
     @ObservedResults(Category.self) var categories
     
@@ -22,14 +23,12 @@ struct AddTransaction: View {
     @State var alertAmount: Bool = false
     @State var alertCategory: Bool = false
     
-    
     var body: some View {
         NavigationStack {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(alignment: .leading) {
                         Section {
-                            if selectedType == .expense {
-                                TextField("-100 \(currencySymbol)", text: $amount)
+                            TextField(selectedType == .expense ? "-100 \(currencySymbol)" : "+100 \(currencySymbol)", text: $amount)
                                     .font(.title3)
                                     .keyboardType(.decimalPad)
                                     .padding()
@@ -38,17 +37,6 @@ struct AddTransaction: View {
                                     .cornerRadius(10)
                                     .padding(.bottom, 15)
                                     .focused($amountIsFocused)
-                            } else {
-                                TextField("+100 \(currencySymbol)", text: $amount)
-                                    .font(.title3)
-                                    .keyboardType(.decimalPad)
-                                    .padding()
-                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                    .background(Color("colorBalanceBG"))
-                                    .cornerRadius(10)
-                                    .padding(.bottom, 15)
-                                    .focused($amountIsFocused)
-                            }
                         } header: {
                             Text("Enter amount:")
                                 .font(.caption).textCase(.uppercase)
@@ -153,7 +141,7 @@ struct AddTransaction: View {
                             alertCategory = true
                         } else {
                             playFeedbackHaptic(selectedFeedbackHaptic)
-                            viewModel.saveTransaction(amount: Float(amount) ?? 0, date: date, note: note, type: selectedType, category: selectedCategory)
+                            transactionVM.saveTransaction(amount: Float(amount) ?? 0, date: date, note: note, type: selectedType, category: selectedCategory)
                             dismiss()
                         }
                     } label: {
@@ -173,7 +161,7 @@ struct AddTransaction: View {
 
 struct AddTransaction_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModel = SceneViewModel()
+        let viewModel = AppViewModel()
         let cofiguration = Realm.Configuration(inMemoryIdentifier: "Preview")
         
         AddTransaction(selectedCategory: Category())

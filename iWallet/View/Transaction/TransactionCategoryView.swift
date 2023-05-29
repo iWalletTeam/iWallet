@@ -4,7 +4,8 @@ import SwiftUI
 import RealmSwift
 
 struct TransactionCategoryView: View {
-    @EnvironmentObject var viewModel: SceneViewModel
+    @EnvironmentObject var viewModel: AppViewModel
+    @EnvironmentObject var transactionVM: TransactionViewModel
     @ObservedResults(TransactionItem.self) var transactions
     
     @Binding var selectedCategory: Category
@@ -140,7 +141,7 @@ struct TransactionCategoryView: View {
         withAnimation {
             offsets.forEach { index in
                 let transaction = sortedTransactions[index]
-                viewModel.deleteTransaction(withId: transaction.id)
+                transactionVM.deleteTransaction(withId: transaction.id)
             }
         }
     }

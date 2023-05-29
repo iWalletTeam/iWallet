@@ -10,9 +10,6 @@ struct BalanceView: View {
     let curren: String
     let type: String
     let icon: String
-    let viewBG: Color
-    let amountBG: Color
-    let typeBG: Color
     let iconBG: Color
     
     var body: some View {
@@ -20,7 +17,7 @@ struct BalanceView: View {
             VStack(alignment: .leading) {
                 HStack {
                     Image(systemName: icon)
-                        .foregroundColor(Color("colorBlack"))
+                        .foregroundColor(Color(Colors.colorBlack))
                         .frame(width: 30, height: 30)
                         .background(iconBG)
                         .cornerRadius(7.5)
@@ -28,18 +25,18 @@ struct BalanceView: View {
                     Text("\(amount.formattedWithSeparatorAndCurrency()) \(curren)")
                         .font(.headline)
                         .fontWeight(.bold)
-                        .foregroundColor(amountBG)
+                        .foregroundColor(Color(Colors.mainText))
                 }
                 
                 HStack {
                     Text(type)
-                        .foregroundColor(typeBG).textCase(.uppercase)
+                        .foregroundColor(.gray).textCase(.uppercase)
                         .font(.subheadline).dynamicTypeSize(.small)
                 } .padding(.top, 5)
             }
             .padding(10)
             .padding(.vertical, 5)
-            .background(viewBG)
+            .background(Color(Colors.colorBalanceBG))
             .cornerRadius(10)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
@@ -48,6 +45,6 @@ struct BalanceView: View {
 
 struct BalanceView_Previews: PreviewProvider {
     static var previews: some View {
-        BalanceView(amount: 1000, curren: "$", type: "Income", icon: "plus", viewBG: .white, amountBG: .black, typeBG: .gray, iconBG: .blue)
+        BalanceView(amount: 1000, curren: "$", type: "Income", icon: "plus", iconBG: .blue)
     }
 }

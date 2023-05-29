@@ -4,7 +4,8 @@ import SwiftUI
 import RealmSwift
 
 struct TransactionView: View {
-    @EnvironmentObject var viewModel: SceneViewModel
+    @EnvironmentObject var viewModel: AppViewModel
+    @EnvironmentObject var transactionVM: TransactionViewModel
     @Environment(\.dismiss) var dismiss
     
     @ObservedResults(TransactionItem.self) var transactions
@@ -120,7 +121,7 @@ struct TransactionView: View {
         withAnimation {
             offsets.forEach { index in
                 let transaction = sortedTransactions[index]
-                viewModel.deleteTransaction(withId: transaction.id)
+                transactionVM.deleteTransaction(withId: transaction.id)
             }
         }
     }
@@ -165,6 +166,6 @@ struct TransactionView: View {
 struct TransactionView_Previews: PreviewProvider {
     static var previews: some View {
         TransactionView()
-            .environmentObject(SceneViewModel())
+            .environmentObject(AppViewModel())
     }
 }

@@ -26,5 +26,6 @@ func previewCard() -> some View {
             Spacer(minLength: 20)
         }
         .frame(maxWidth: .infinity, maxHeight: 300)
+        .background(Color(Colors.colorBalanceBG))
     }
 }

@@ -4,7 +4,7 @@ import SwiftUI
 import RealmSwift
 
 struct WelcomeView: View {
-    @EnvironmentObject var viewModel: SceneViewModel
+    @EnvironmentObject var categoryVM: CategoryViewModel
     
     @AppStorage("hasRunBefore") private var hasRunBefore = false
     @AppStorage("currencySymbol") private var currencySymbol: String = "USD"
@@ -44,7 +44,7 @@ struct WelcomeView: View {
                             }
                             .padding()
                             .frame(maxWidth: .infinity, maxHeight: 50)
-                            .background(Color("colorBalanceBG"))
+                            .background(Color(Colors.colorBalanceBG))
                             .cornerRadius(12.5)
                         } header: {
                             HStack {
@@ -56,7 +56,7 @@ struct WelcomeView: View {
                         VStack(alignment: .leading) {
                             HStack {
                                 Toggle("Basic categories", isOn: $vibrateOnSilent)
-                                    .toggleStyle(SwitchToggleStyle(tint: Color("colorGreen")))
+                                    .toggleStyle(SwitchToggleStyle(tint: Color.green))
                             }
                             Text("Note: Enabling this feature will create base categories for expenses and income.")
                                 .font(.subheadline)
@@ -64,7 +64,7 @@ struct WelcomeView: View {
                         }
                         .padding()
                         .frame(maxWidth: .infinity, maxHeight: 200)
-                        .background(Color("colorBalanceBG"))
+                        .background(Color(Colors.colorBalanceBG))
                         .cornerRadius(12.5)
                     }
                 }
@@ -75,7 +75,7 @@ struct WelcomeView: View {
                         hasRunBefore = true
                         currencySymbol = selectedCurrency.symbol
                         if vibrateOnSilent {
-                            viewModel.createDefaultCategories()
+                            categoryVM.createDefaultCategories()
                         }
                     } label: {
                         HStack(alignment: .center) {
@@ -90,7 +90,7 @@ struct WelcomeView: View {
                 }
             }
             .padding(15)
-            .background(Color("colorBG"))
+            .background(Color(Colors.mainBG))
         }
     }
 }

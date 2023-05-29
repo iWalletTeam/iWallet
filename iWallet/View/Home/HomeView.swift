@@ -4,7 +4,7 @@ import SwiftUI
 import RealmSwift
 
 struct HomeView: View {
-    @EnvironmentObject var viewModel: SceneViewModel
+    @EnvironmentObject var transactionVM: TransactionViewModel
     @ObservedResults(Category.self) var categories
     
     @AppStorage("currencySymbol") private var currencySymbol: String = "USD"
@@ -26,15 +26,13 @@ struct HomeView: View {
                 ScrollView(.vertical, showsIndicators: false) {
                     LazyVGrid(columns: adaptive) {
                         
-                        BalanceView(amount: viewModel.balance(), curren: currencySymbol, type: NSLocalizedString("Balance", comment: "Balance"), icon: "equal.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorBlue"))
+                        BalanceView(amount: transactionVM.balance(), curren: currencySymbol, type: NSLocalizedString("Balance", comment: "Balance"), icon: "equal.circle", iconBG: Color(Colors.colorBlue))
                         
-                        BalanceView(amount: viewModel.averageDailyExpense(), curren: currencySymbol, type: NSLocalizedString("Expense average", comment: "Expense average"), icon: "plusminus.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorYellow"))
-                            .frame(height: expenseHeight)
+                        BalanceView(amount: transactionVM.averageDailyExpense(), curren: currencySymbol, type: NSLocalizedString("Expense average", comment: "Expense average"), icon: "plusminus.circle", iconBG: Color(Colors.colorYellow))
                         
-                        BalanceView(amount: viewModel.totalIncomes(), curren: currencySymbol, type: NSLocalizedString("Income", comment: "Income"), icon: "plus.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorGreen"))
-                            .frame(height: expenseHeight)
+                        BalanceView(amount: transactionVM.totalIncomes(), curren: currencySymbol, type: NSLocalizedString("Income", comment: "Income"), icon: "plus.circle", iconBG: Color(Colors.colorGreen))
                         
-                        BalanceView(amount: viewModel.totalExpenses(), curren: currencySymbol, type: NSLocalizedString("Expense", comment: "Expense"), icon: "minus.circle", viewBG: Color("colorBalanceBG"), amountBG: Color("colorBalanceText"), typeBG: .gray, iconBG: Color("colorRed"))
+                        BalanceView(amount: transactionVM.totalExpenses(), curren: currencySymbol, type: NSLocalizedString("Expense", comment: "Expense"), icon: "minus.circle", iconBG: Color(Colors.colorRed))
                         
                     }
                     .padding(.horizontal)
@@ -48,7 +46,7 @@ struct HomeView: View {
                     .pickerStyle(SegmentedPickerStyle())
                     .padding(10)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(Color("colorBalanceBG"))
+                    .background(Color(Colors.colorBalanceBG))
                     .cornerRadius(10)
                     .padding(.horizontal, 15)
                     
@@ -57,61 +55,17 @@ struct HomeView: View {
                         let categoriesWithTransactionsArray = categoriesWithTransaction(categories: categories)
                         
                         // фильтруем категории по типу
-                        var filteredCategoriesArray =  filteredCategories(categories: categoriesWithTransactionsArray, type: selectedCategoryType)
-                        
-                        // сортируем категории по сумме
-                        let _: () = filteredCategoriesArray.sort(by: { $0.categoryAmount(type: selectedCategoryType) > $1.categoryAmount(type: selectedCategoryType)})
+                        let filteredCategoriesArray =  filteredCategories(categories: categoriesWithTransactionsArray, type: selectedCategoryType)
                         
                         if filteredCategoriesArray.isEmpty {
                             previewCard()
-                                .padding()
-                                .frame(maxWidth: .infinity, maxHeight: 300)
-                                .background(Color("colorBalanceBG"))
-                            
                         } else {
                             
                             ForEach(filteredCategoriesArray, id: \.self) { category in
                                 let totalAmount = category.categoryAmount(type: selectedCategoryType)
                                 NavigationLink(destination: TransactionCategoryView(selectedCategory: .constant(category))) {
-                                    VStack(alignment: .leading, spacing: 0) {
-                                        HStack {
-                                            HStack {
-                                                Divider()
-                                                    .foregroundColor(Color(category.color))
-                                                    .frame(width: 5, height: 50)
-                                                    .background(Color(category.color))
-                                            }
-                                            
-                                            Image(systemName: category.icon)
-                                                .font(.system(size: 15))
-                                                .foregroundColor(.black)
-                                                .frame(width: 30, height: 30)
-                                                .background(Color(category.color))
-                                                .cornerRadius(7.5)
-                                                .padding(0)
-                                            
-                                            Text(category.name)
-                                                .font(.headline)
-                                                .fontWeight(.light)
-                                                .foregroundColor(Color("colorBalanceText"))
-                                            
-                                            Spacer()
-                                            
-                                            Text("\(totalAmount.formattedWithSeparatorAndCurrency()) \(currencySymbol)")
-                                                .font(.headline).bold()
-                                                .foregroundColor(Color("colorBalanceText"))
-                                            
-                                            Image(systemName: "chevron.forward")
-                                                .foregroundColor(Color("colorBalanceText"))
-                                                .opacity(0.5)
-                                            
-                                        }
-                                        .padding()
-                                        .frame(maxWidth: .infinity, maxHeight: 50)
-                                        .background(Color("colorBalanceBG"))
-                                        
-                                        Divider()
-                                    }
+                                    
+                                    CategoryItemView(categoryColor: category.color, categoryIcon: category.icon, categoryName: category.name, totalAmount: totalAmount, currencySymbol: currencySymbol)
                                 }
                             }
                         }
@@ -163,7 +117,7 @@ struct HomeView: View {
             SettingView()
         }
         .sheet(isPresented: $showAddTransaction) {
-            AddTransaction(selectedCategory: Category())
+            AddTransaction(selectedCategory: Category(), selectedType: selectedCategoryType)
         }
     }
     
@@ -192,11 +146,8 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModel = SceneViewModel()
-        let cofiguration = Realm.Configuration(inMemoryIdentifier: "Preview")
-        
         HomeView()
-            .environmentObject(viewModel)
-            .environment(\.realmConfiguration, cofiguration)
+            .environmentObject(AppViewModel())
+            .environmentObject(TransactionViewModel())
     }
 }

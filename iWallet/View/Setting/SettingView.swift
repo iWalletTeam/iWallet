@@ -3,7 +3,7 @@
 import SwiftUI
 
 struct SettingView: View {
-    @EnvironmentObject var viewModel: SceneViewModel
+    @EnvironmentObject var viewModel: AppViewModel
     
     @Environment(\.dismiss) var dismiss
     @Environment(\.openURL) var openURL
@@ -103,26 +103,7 @@ struct SettingView: View {
                                 .opacity(0.5)
                         }
                     }
-                    
-                    Button {
-                        playFeedbackHaptic(selectedFeedbackHaptic)
-                        openURL(URL(string: NSLocalizedString("https://t.me/iwalletapp", comment: "https://t.me/iwalletapp"))!)
-                    } label: {
-                        HStack {
-                            Image(systemName: "person.2.circle")
-                                .foregroundColor(Color("colorBlack"))
-                                .frame(width: 30, height: 30)
-                                .background(Color("colorGreen"))
-                                .cornerRadius(7.5)
-                            Text("Community")
-                                .foregroundColor(Color("colorBalanceText"))
-                            Spacer()
-                            Image(systemName: "chevron.forward")
-                                .foregroundColor(Color("colorBalanceText"))
-                                .opacity(0.5)
-                        }
-                    }
-                    
+                                        
                     Button {
                         playFeedbackHaptic(selectedFeedbackHaptic)
                         openURL(URL(string: NSLocalizedString("https://t.me/idevnva", comment: "https://t.me/idevnva"))!)
