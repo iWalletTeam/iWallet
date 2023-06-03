@@ -13,26 +13,23 @@ struct iWalletApp: App {
     @ObservedObject var categoryVM = CategoryViewModel()
     @ObservedObject var transactionVM = TransactionViewModel()
     
-    @AppStorage("hasRunBefore") private var hasRunBefore = false
-    @AppStorage("currencySymbol") private var currencySymbol: String = "USD"
-    @AppStorage("playFeedbackHaptic") private var selectedFeedbackHaptic: Bool = true
-        
     var body: some Scene {
+        
+        // переменная для поиска пути локального хранения базы данных
+        // let _ = print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.path)
+        
         WindowGroup {
-            if !hasRunBefore {
-                withAnimation {
-                    WelcomeView()
-                        .environmentObject(appVM)
-                        .environmentObject(categoryVM)
-                        .environmentObject(transactionVM)
-                }
+            if !appVM.hasRunBefore {
+                WelcomeView()
+                    .environmentObject(appVM)
+                    .environmentObject(categoryVM)
+                    .environmentObject(transactionVM)
+                
             } else {
-                withAnimation {
-                    HomeView()
-                        .environmentObject(appVM)
-                        .environmentObject(categoryVM)
-                        .environmentObject(transactionVM)
-                }
+                HomeView()
+                    .environmentObject(appVM)
+                    .environmentObject(categoryVM)
+                    .environmentObject(transactionVM)
             }
         }
     }

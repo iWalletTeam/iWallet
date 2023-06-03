@@ -14,6 +14,7 @@ struct Colors {
     static let mainText: String = "colorBalanceText"
     static let mainBG: String = "colorBG"
     static let colorBlack: String = "colorBlack"
+    static let colorPickerBG: String = "colorPickerBG"
     
     // дополнительные цвета для иконок кол-во 21
     static let colorBlue: String = "colorBlue"

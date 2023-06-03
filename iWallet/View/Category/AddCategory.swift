@@ -3,17 +3,17 @@
 import SwiftUI
 
 struct AddCategory: View {
-    @EnvironmentObject var viewModel: AppViewModel
+    @EnvironmentObject var appVM: AppViewModel
     @EnvironmentObject var categoryVM: CategoryViewModel
     @Environment(\.dismiss) var dismiss
     
-    @AppStorage("playFeedbackHaptic") private var selectedFeedbackHaptic: Bool = true
     @FocusState private var nameIsFocused: Bool
     
     @State var selectedType: CategoryType = .expense
     @State private var name: String = ""
     @State private var selectedImage: String = "folder.circle"
     @State private var selectedColor: String = "colorBlue"
+    @State private var showAlert: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -104,20 +104,12 @@ struct AddCategory: View {
             .navigationBarTitle("Create a category", displayMode: .inline)
             .scrollDismissesKeyboard(.immediately)
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button {
-                        playFeedbackHaptic(selectedFeedbackHaptic)
-                        dismiss()
-                    } label: {
-                        Text("Back")
-                    }
-                }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         if name.isEmpty {
-                            
+                            showAlert.toggle()
                         } else {
-                            playFeedbackHaptic(selectedFeedbackHaptic)
+                            playFeedbackHaptic(appVM.selectedFeedbackHaptic)
                             categoryVM.saveCategory(name: name, icon: selectedImage, color: selectedColor, type: selectedType)
                             dismiss()
                         }
@@ -131,15 +123,17 @@ struct AddCategory: View {
                     }
                 }
             }
+            .alert("Пожалуйста введите название категории", isPresented: $showAlert) {
+                    Button("Okay", role: .cancel) { 
+                }
+            }
         }
     }
 }
 
 struct AddCategory_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModel = AppViewModel()
-        
         AddCategory()
-            .environmentObject(viewModel)
+            .environmentObject(AppViewModel())
     }
 }

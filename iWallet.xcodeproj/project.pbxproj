@@ -38,6 +38,7 @@
 		08AE95FF29E3236600F8AFA7 /* TransactionCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AE95FE29E3236600F8AFA7 /* TransactionCategoryView.swift */; };
 		08D38C5029D465640078C6C4 /* AddTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D38C4F29D465640078C6C4 /* AddTransaction.swift */; };
 		08D38C5429D48FE00078C6C4 /* TransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D38C5329D48FE00078C6C4 /* TransactionView.swift */; };
+		08F15F1A2A2A95890009FC0A /* PickerCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F15F192A2A95890009FC0A /* PickerCategoryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,7 @@
 		08AE95FE29E3236600F8AFA7 /* TransactionCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCategoryView.swift; sourceTree = "<group>"; };
 		08D38C4F29D465640078C6C4 /* AddTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransaction.swift; sourceTree = "<group>"; };
 		08D38C5329D48FE00078C6C4 /* TransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionView.swift; sourceTree = "<group>"; };
+		08F15F192A2A95890009FC0A /* PickerCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerCategoryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +221,7 @@
 				08558B9B29D37DDC0047F959 /* CategoryView.swift */,
 				08558B9D29D380920047F959 /* AddCategory.swift */,
 				0864598D2A20269C006C28AB /* CategoryItemView.swift */,
+				08F15F192A2A95890009FC0A /* PickerCategoryView.swift */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				08AE95FF29E3236600F8AFA7 /* TransactionCategoryView.swift in Sources */,
 				08D38C5029D465640078C6C4 /* AddTransaction.swift in Sources */,
 				08558BA029D381F10047F959 /* ColorPicker.swift in Sources */,
+				08F15F1A2A2A95890009FC0A /* PickerCategoryView.swift in Sources */,
 				08645FDC2A1E80460059BDCB /* CategoryModel.swift in Sources */,
 				08645FF02A1FBD030059BDCB /* TransactionViewModel.swift in Sources */,
 				08D38C5429D48FE00078C6C4 /* TransactionView.swift in Sources */,

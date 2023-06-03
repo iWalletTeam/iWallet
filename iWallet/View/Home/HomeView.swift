@@ -4,16 +4,13 @@ import SwiftUI
 import RealmSwift
 
 struct HomeView: View {
+    @EnvironmentObject var appVM: AppViewModel
+    @EnvironmentObject var categoryVM: CategoryViewModel
     @EnvironmentObject var transactionVM: TransactionViewModel
     @ObservedResults(Category.self) var categories
     
-    @AppStorage("currencySymbol") private var currencySymbol: String = "USD"
-    @AppStorage("playFeedbackHaptic") private var selectedFeedbackHaptic: Bool = true
-    
-    @State private var showSettingView: Bool = false
     @State private var showAddTransaction: Bool = false
     @State private var selectedCategoryType: CategoryType = .expense
-    @State private var expenseHeight: CGFloat = 0
     
     private let adaptive =
     [
@@ -26,13 +23,13 @@ struct HomeView: View {
                 ScrollView(.vertical, showsIndicators: false) {
                     LazyVGrid(columns: adaptive) {
                         
-                        BalanceView(amount: transactionVM.balance(), curren: currencySymbol, type: NSLocalizedString("Balance", comment: "Balance"), icon: "equal.circle", iconBG: Color(Colors.colorBlue))
+                        BalanceView(amount: transactionVM.balance(), curren: appVM.currencySymbol, type: NSLocalizedString("Balance", comment: "Balance"), icon: "equal.circle", iconBG: Color(Colors.colorBlue))
                         
-                        BalanceView(amount: transactionVM.averageDailyExpense(), curren: currencySymbol, type: NSLocalizedString("Expense average", comment: "Expense average"), icon: "plusminus.circle", iconBG: Color(Colors.colorYellow))
+                        BalanceView(amount: transactionVM.averageDailyExpense(), curren: appVM.currencySymbol, type: NSLocalizedString("Expense average", comment: "Expense average"), icon: "plusminus.circle", iconBG: Color(Colors.colorYellow))
                         
-                        BalanceView(amount: transactionVM.totalIncomes(), curren: currencySymbol, type: NSLocalizedString("Income", comment: "Income"), icon: "plus.circle", iconBG: Color(Colors.colorGreen))
+                        BalanceView(amount: transactionVM.totalIncomes(), curren: appVM.currencySymbol, type: NSLocalizedString("Income", comment: "Income"), icon: "plus.circle", iconBG: Color(Colors.colorGreen))
                         
-                        BalanceView(amount: transactionVM.totalExpenses(), curren: currencySymbol, type: NSLocalizedString("Expense", comment: "Expense"), icon: "minus.circle", iconBG: Color(Colors.colorRed))
+                        BalanceView(amount: transactionVM.totalExpenses(), curren: appVM.currencySymbol, type: NSLocalizedString("Expense", comment: "Expense"), icon: "minus.circle", iconBG: Color(Colors.colorRed))
                         
                     }
                     .padding(.horizontal)
@@ -52,23 +49,23 @@ struct HomeView: View {
                     
                     VStack(spacing: 0) {
                         // создаем массив транзакций по категориями
-                        let categoriesWithTransactionsArray = categoriesWithTransaction(categories: categories)
+                        let categoriesWithTransactionsArray = categoryVM.categoriesWithTransaction(categories: categories, type: selectedCategoryType)
                         
                         // фильтруем категории по типу
-                        var filteredCategoriesArray =  filteredCategories(categories: categoriesWithTransactionsArray, type: selectedCategoryType)
+                        var filteredCategoriesArray =  categoryVM.filteredCategories(categories: categoriesWithTransactionsArray, type: selectedCategoryType)
                         
                         // сортируем категории по сумме
                         let _: () = filteredCategoriesArray.sort(by: { $0.categoryAmount(type: selectedCategoryType) > $1.categoryAmount(type: selectedCategoryType)})
                         
                         if filteredCategoriesArray.isEmpty {
-                            previewCard()
+                            previewHomeTransaction()
                         } else {
                             
                             ForEach(filteredCategoriesArray, id: \.self) { category in
                                 let totalAmount = category.categoryAmount(type: selectedCategoryType)
                                 NavigationLink(destination: TransactionCategoryView(selectedCategory: .constant(category))) {
                                     
-                                    CategoryItemView(categoryColor: category.color, categoryIcon: category.icon, categoryName: category.name, totalAmount: totalAmount, currencySymbol: currencySymbol)
+                                    CategoryItemView(categoryColor: category.color, categoryIcon: category.icon, categoryName: category.name, totalAmount: totalAmount, currencySymbol: appVM.currencySymbol)
                                 }
                             }
                         }
@@ -81,7 +78,7 @@ struct HomeView: View {
                 
                 HStack {
                     Button {
-                        playFeedbackHaptic(selectedFeedbackHaptic)
+                        playFeedbackHaptic(appVM.selectedFeedbackHaptic)
                         showAddTransaction.toggle()
                     } label: {
                         ZStack {
@@ -98,12 +95,13 @@ struct HomeView: View {
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button {
-                            withAnimation {
-                                playFeedbackHaptic(selectedFeedbackHaptic)
-                                showSettingView.toggle()
-                            }
+                            playFeedbackHaptic(appVM.selectedFeedbackHaptic)
                         } label: {
-                            Text("Settings")
+                            NavigationLink(destination: SettingView(), label: {
+                                HStack {
+                                    Text("Settings")
+                                }
+                            })
                         }
                     }
                     ToolbarItem(placement: .navigationBarLeading) {
@@ -116,34 +114,9 @@ struct HomeView: View {
             }
             .background(Color("colorBG"))
         }
-        .sheet(isPresented: $showSettingView) {
-            SettingView()
-        }
         .sheet(isPresented: $showAddTransaction) {
             AddTransaction(selectedCategory: Category(), selectedType: selectedCategoryType)
         }
-    }
-    
-    // Функция которая фильтрует список категорий, чтобы найти только те, которые имеют транзакции определенного типа.
-    private func categoriesWithTransaction(categories: Results<Category>) -> [Category] {
-        var result: [Category] = []
-        for category in categories {
-            if category.hasTransactions(type: selectedCategoryType) {
-                result.append(category)
-            }
-        }
-        return result
-    }
-    
-    // Функция фильтрует категории из массива categories, сохраняя только те, сумма транзакций которых для заданного типа type (доход или расход) больше 0
-    private func filteredCategories(categories: [Category], type: CategoryType) -> [Category] {
-        var result: [Category] = []
-        for category in categories {
-            if category.categoryAmount(type: type) > 0 {
-                result.append(category)
-            }
-        }
-        return result
     }
 }
 

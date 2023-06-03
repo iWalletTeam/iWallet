@@ -18,7 +18,8 @@ struct ColorPicker: View {
                             selectedColor = color
                         }
                 }
-            } .padding()
+            }
+            .padding()
         }
     }
 }

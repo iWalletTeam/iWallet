@@ -27,15 +27,15 @@
 "Please enter amount" = "Please enter amount";
 "Please select a category" = "Please select a category";
 "Okay" = "Okay";
+"Select a category" = "Select a category";
+"Category:" = "Category:";
+"Addendum" = "Addendum";
 
 // TransactionView
 "Transactions" = "Transactions";
 "Back" = "Back";
 
 // AddCategoryView
-"Welcome" = "Welcome";
-"The list of categories is currently empty," = "The list of categories is currently empty,";
-"please add category." = "please add category.";
 "Back" = "Back";
 "New" = "New";
 
@@ -64,11 +64,17 @@
 "Vibration" = "Vibration";
 "https://idevnva.com/" = "https://idevnva.com/iwallet";
 "https://t.me/idevnva" = "https://t.me/idevnva";
+"App version: 1.1.5" = "App version: 1.1.5";
 
 //PreviewCard
 "Welcome" = "Welcome!";
 "The list of transactions is currently empty," = "The list of transactions is currently empty,";
 "please add transaction." = "please add transaction.";
+"Welcome" = "Welcome";
+"The list of categories is currently empty," = "The list of categories is currently empty,";
+"please add category." = "please add category.";
+"There are currently no categories." = "There are currently no categories.";
+"Please add." = "Please add.";
 
 // DefaultCategories
 // Все категории для расхода
@@ -92,6 +98,7 @@
 "Entertainment" = "Entertainment";
 "Technique" = "Technique";
 "Transport" = "Transport";
+
 // Все категории для дохода
 "Rent" = "Rent";
 "Exchange" = "Exchange";
@@ -102,9 +109,13 @@
 "Interest on accounts" = "Interest on accounts";
 
 // WelcomeView
-"Welcome to the iWallet!" = "Welcome to the iWallet!";
+"iWallet" = "iWallet";
 "Currency" = "Currency";
 "Initial application setup" = "Initial application setup:";
 "Basic categories" = "Basic categories";
 "Note: Enabling this feature will create base categories for expenses and income." = "Note: Enabling this feature will create base categories for expenses and income.";
 "Continue" = "Continue";
+
+// PickerCategoryView
+"Categories" = "Categories";
+"Create category" = "Create category";

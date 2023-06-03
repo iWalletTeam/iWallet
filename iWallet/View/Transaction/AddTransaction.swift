@@ -4,13 +4,11 @@ import SwiftUI
 import RealmSwift
 
 struct AddTransaction: View {
-    @EnvironmentObject var viewModel: AppViewModel
+    @EnvironmentObject var appVM: AppViewModel
     @EnvironmentObject var transactionVM: TransactionViewModel
     @Environment(\.dismiss) var dismiss
     @ObservedResults(Category.self) var categories
     
-    @AppStorage("currencySymbol") private var currencySymbol: String = "USD"
-    @AppStorage("playFeedbackHaptic") private var selectedFeedbackHaptic: Bool = true
     @FocusState private var amountIsFocused: Bool
     @FocusState private var noteIsFocused: Bool
     @FocusState private var keyIsFocused: Bool
@@ -27,41 +25,41 @@ struct AddTransaction: View {
         NavigationStack {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(alignment: .leading) {
-                        Section {
-                            TextField(selectedType == .expense ? "-100 \(currencySymbol)" : "+100 \(currencySymbol)", text: $amount)
-                                    .font(.title3)
-                                    .keyboardType(.decimalPad)
-                                    .padding()
-                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                    .background(Color("colorBalanceBG"))
-                                    .cornerRadius(10)
-                                    .padding(.bottom, 15)
-                                    .focused($amountIsFocused)
-                        } header: {
-                            Text("Enter amount:")
-                                .font(.caption).textCase(.uppercase)
-                                .padding(.leading, 10)
-                        }
-                        .onTapGesture {
-                            amountIsFocused.toggle()
-                        }
-                        
-                        Section {
-                            TextField("Note", text: $note)
-                                .padding()
-                                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                .background(Color("colorBalanceBG"))
-                                .cornerRadius(10)
-                                .padding(.bottom, 15)
-                                .focused($noteIsFocused)
-                        } header: {
-                            Text("Enter note:")
-                                .font(.caption).textCase(.uppercase)
-                                .padding(.leading, 10)
-                        }
-                        .onTapGesture {
-                            noteIsFocused.toggle()
-                        }
+                    Section {
+                        TextField(selectedType == .expense ? "-100 \(appVM.currencySymbol)" : "+100 \(appVM.currencySymbol)", text: $amount)
+                            .font(.title3)
+                            .keyboardType(.numberPad)
+                            .padding()
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .background(Color("colorBalanceBG"))
+                            .cornerRadius(10)
+                            .padding(.bottom, 15)
+                            .focused($amountIsFocused)
+                    } header: {
+                        Text("Enter amount:")
+                            .font(.caption).textCase(.uppercase)
+                            .padding(.leading, 10)
+                    }
+                    .onTapGesture {
+                        amountIsFocused.toggle()
+                    }
+                    
+                    Section {
+                        TextField("Note", text: $note)
+                            .padding()
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .background(Color("colorBalanceBG"))
+                            .cornerRadius(10)
+                            .padding(.bottom, 15)
+                            .focused($noteIsFocused)
+                    } header: {
+                        Text("Enter note:")
+                            .font(.caption).textCase(.uppercase)
+                            .padding(.leading, 10)
+                    }
+                    .onTapGesture {
+                        noteIsFocused.toggle()
+                    }
                     
                     Section {
                         Picker("Category type", selection: $selectedType) {
@@ -74,34 +72,59 @@ struct AddTransaction: View {
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .background(Color("colorBalanceBG"))
                         .cornerRadius(10)
-                        
+                            
                         HStack {
-                            Picker("Category", selection: $selectedCategory) {
-                                ForEach(categories.filter { $0.type == selectedType }, id: \.self) { category in
+                            NavigationLink(destination: PickerCategoryView(selected: $selectedCategory, selectedType: selectedType), label: {
+                                if selectedCategory.name.isEmpty {
                                     HStack {
-                                        Image(systemName: category.icon)
-                                            .foregroundColor(Color(.black))
+                                        Spacer()
+                                        Text("?")
+                                            .font(.system(size: 15))
                                             .frame(width: 30, height: 30)
-                                            .background(Color(category.color))
+                                            .background {
+                                                RoundedRectangle(cornerRadius: 10, style: .circular)
+                                                    .strokeBorder(Color(Colors.mainText))
+                                            }
+                                        
+                                        Text("Select a category")
+                                        Spacer()
+                                    }
+                                    .font(Font.subheadline)
+                                    .padding(10)
+                                    .frame(maxWidth: .infinity)
+                                    .background(Color(Colors.colorPickerBG))
+                                    .cornerRadius(10)
+                                    
+                              
+                                } else {
+                                    HStack {
+                                        Text("Category:")
+                                            .font(.headline)
+                                        Spacer()
+                                        Image(systemName: selectedCategory.icon)
+                                            .font(.system(size: 15))
+                                            .foregroundColor(.black)
+                                            .frame(width: 30, height: 30)
+                                            .background(Color(selectedCategory.color))
                                             .cornerRadius(7.5)
-                                        Text(category.name)
-                                            .foregroundColor(Color("colorBalanceText"))
+                                            .padding(0)
+                                        Text(selectedCategory.name)
+                                            .font(.headline)
+                                            .fontWeight(.light)
                                     }
                                 }
-                            }
-                            .foregroundColor(Color("colorBalanceText"))
-                            .pickerStyle(.navigationLink)
+                            })
+                            .foregroundColor(Color(Colors.mainText))
                             .padding()
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
-                            .background(Color("colorBalanceBG"))
+                            .background(Color(Colors.colorBalanceBG))
                             .cornerRadius(10)
-                            .padding(.bottom, 15)
                         }
                     } header: {
                         Text("Purpose:")
                             .font(.caption).textCase(.uppercase)
                             .padding(.leading, 10)
                     }
+                    
                     Section {
                         HStack {
                             DatePicker("Date", selection: $date, displayedComponents: .date)
@@ -115,19 +138,22 @@ struct AddTransaction: View {
                         Text("Enter date:")
                             .font(.caption).textCase(.uppercase)
                             .padding(.leading, 10)
+                            .padding(.top, 10)
                     }
                 }
                 .padding(.horizontal, 15)
                 .padding(.top, 20)
                 
             }
+            .navigationTitle("Addendum")
+            .navigationBarTitleDisplayMode(.inline)
             .scrollDismissesKeyboard(.immediately)
             .background(Color("colorBG"))
             .navigationBarTitle("", displayMode: .inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        playFeedbackHaptic(selectedFeedbackHaptic)
+                        playFeedbackHaptic(appVM.selectedFeedbackHaptic)
                         dismiss()
                     } label: {
                         Text("Cancel")
@@ -139,8 +165,11 @@ struct AddTransaction: View {
                             alertAmount = true
                         } else if selectedCategory.name == "" {
                             alertCategory = true
+                        } else if selectedType != selectedCategory.type {
+                            alertCategory = true
+                            selectedCategory = Category()
                         } else {
-                            playFeedbackHaptic(selectedFeedbackHaptic)
+                            playFeedbackHaptic(appVM.selectedFeedbackHaptic)
                             transactionVM.saveTransaction(amount: Float(amount) ?? 0, date: date, note: note, type: selectedType, category: selectedCategory)
                             dismiss()
                         }
@@ -161,11 +190,7 @@ struct AddTransaction: View {
 
 struct AddTransaction_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModel = AppViewModel()
-        let cofiguration = Realm.Configuration(inMemoryIdentifier: "Preview")
-        
         AddTransaction(selectedCategory: Category())
-            .environmentObject(viewModel)
-            .environment(\.realmConfiguration, cofiguration)
+            .environmentObject(AppViewModel())
     }
 }

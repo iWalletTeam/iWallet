@@ -4,36 +4,32 @@ import SwiftUI
 import RealmSwift
 
 struct TransactionView: View {
-    @EnvironmentObject var viewModel: AppViewModel
+    @EnvironmentObject var appVM: AppViewModel
     @EnvironmentObject var transactionVM: TransactionViewModel
     @Environment(\.dismiss) var dismiss
     
     @ObservedResults(TransactionItem.self) var transactions
     @ObservedResults(Category.self) var categories
     
-    @AppStorage("currencySymbol") private var currencySymbol: String = "USD"
-    @AppStorage("playFeedbackHaptic") private var selectedFeedbackHaptic: Bool = true
-    
     var body: some View {
         NavigationStack {
             List {
                 if transactions.isEmpty {
-                    previewCard()
+                    previewCardTransaction()
                 } else {
-                    let groupedTransactions = transactionsByDate(Array(transactions))
-                    
+                    let groupedTransactions = transactionVM.transactionsByDate(Array(transactions))
                     ForEach(groupedTransactions.keys.sorted(by: { $0 > $1 }), id: \.self) { date in
                         Section(header: Text(date, style: .date).bold()) {
-                            let sortedTransactions = sortTransactionsByDate(transactions: groupedTransactions[date]!)
+                            let sortedTransactions = transactionVM.sortTransactionsByDate(transactions: groupedTransactions[date]!)
                             
                             ForEach(sortedTransactions, id: \.self) { transaction in
-                                if let category = filterCategories(categories: Array(categories), transaction: transaction) {
+                                if let category = transactionVM.filterCategories(categories: Array(categories), transaction: transaction) {
                                     transactionRow(transaction: transaction, category: category)
                                 }
                             }
                             .onDelete(perform: { indexSet in
-                                deleteTransaction(at: indexSet, from: sortedTransactions)
-                                playFeedbackHaptic(selectedFeedbackHaptic)
+                                transactionVM.deleteTransaction(at: indexSet, from: sortedTransactions)
+                                playFeedbackHaptic(appVM.selectedFeedbackHaptic)
                             })
                         }
                     }
@@ -45,7 +41,7 @@ struct TransactionView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        playFeedbackHaptic(selectedFeedbackHaptic)
+                        playFeedbackHaptic(appVM.selectedFeedbackHaptic)
                         dismiss()
                     } label: {
                         Text("Back")
@@ -64,6 +60,7 @@ struct TransactionView: View {
     }
     
     // Метод для оптимизации отображения списка
+    @ViewBuilder
     private func transactionRow(transaction: TransactionItem, category: Category) -> some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack {
@@ -77,10 +74,10 @@ struct TransactionView: View {
                 VStack(alignment: .leading) {
                     HStack {
                         if transaction.type == CategoryType.expense {
-                            Text("-\(transaction.amount.formattedWithSeparatorAndCurrency()) \(currencySymbol)")
+                            Text("-\(transaction.amount.formattedWithSeparatorAndCurrency()) \(appVM.currencySymbol)")
                                 .font(.title3).bold()
                         } else {
-                            Text("\(transaction.amount.formattedWithSeparatorAndCurrency()) \(currencySymbol)")
+                            Text("\(transaction.amount.formattedWithSeparatorAndCurrency()) \(appVM.currencySymbol)")
                                 .font(.title3).bold()
                         }
                         Spacer()
@@ -114,52 +111,6 @@ struct TransactionView: View {
         }
         .padding(.vertical, 5)
         .frame(height: 50)
-    }
-    
-    // Метод удаления транзакций
-    private func deleteTransaction(at offsets: IndexSet, from sortedTransactions: [TransactionItem]) {
-        withAnimation {
-            offsets.forEach { index in
-                let transaction = sortedTransactions[index]
-                transactionVM.deleteTransaction(withId: transaction.id)
-            }
-        }
-    }
-    
-    // Метод для группировки транзакций по дате
-    private func transactionsByDate(_ transactions: [TransactionItem]) -> [Date: [TransactionItem]] {
-        var groupedTransactions: [Date: [TransactionItem]] = [:]
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .none
-        
-        for transaction in transactions {
-            let dateString = dateFormatter.string(from: transaction.date)
-            if let date = dateFormatter.date(from: dateString) {
-                if groupedTransactions[date] == nil {
-                    groupedTransactions[date] = []
-                }
-                groupedTransactions[date]?.append(transaction)
-            }
-        }
-        
-        return groupedTransactions
-    }
-    
-    // Метод фильтрации категорий
-    private func filterCategories(categories: [Category], transaction: TransactionItem) -> Category? {
-        for category in categories {
-            if category.id == transaction.categoryId {
-                return category
-            }
-        }
-        return nil
-    }
-    
-    // метод сортировки транзакций по дате
-    private func sortTransactionsByDate(transactions: [TransactionItem]) -> [TransactionItem] {
-        return transactions.sorted(by: { $0.date > $1.date })
     }
 }
 

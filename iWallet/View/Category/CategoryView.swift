@@ -4,45 +4,22 @@ import SwiftUI
 import RealmSwift
 
 struct CategoryView: View {
+    @EnvironmentObject var appVM: AppViewModel
     @EnvironmentObject var categoryVM: CategoryViewModel
     @EnvironmentObject var transactionVM: TransactionViewModel
     @ObservedResults(Category.self) var categories
     @Environment(\.dismiss) var dismiss
     
-    @AppStorage("playFeedbackHaptic") private var selectedFeedbackHaptic: Bool = true
-    
     @State var selectedType: CategoryType = .expense
-    @State var showAddCategory: Bool = false
     
     var body: some View {
         NavigationStack {
             VStack {
                 List {
-                    if filteredCategories().isEmpty {
-                        VStack(alignment: .center) {
-                            Spacer(minLength: 20)
-                            Image("icon")
-                                .resizable()
-                                .frame(width: 25, height: 25)
-                            Spacer()
-                            Text("iWallet")
-                                .foregroundColor(.gray).bold()
-                                .font(.title)
-                            Text("Welcome")
-                                .foregroundColor(.gray)
-                            Spacer(minLength: 20)
-                            
-                            Text("The list of categories is currently")
-                                .foregroundColor(.gray)
-                                .font(.system(size: 12))
-                            Text("please add category.")
-                                .foregroundColor(.gray)
-                                .font(.system(size: 12))
-                            Spacer(minLength: 20)
-                        }
-                        .frame(maxWidth: .infinity, maxHeight: 300)
+                    if categoryVM.filteredCategory(category: categories, type: selectedType).isEmpty {
+                        previewCardCategory()
                     } else {
-                        ForEach(filteredCategories(), id: \.self) { category in
+                        ForEach(categoryVM.filteredCategory(category: categories, type: selectedType), id: \.self) { category in
                             HStack {
                                 Image(systemName: category.icon)
                                     .font(.system(size: 15))
@@ -53,7 +30,11 @@ struct CategoryView: View {
                                 Text(category.name)
                                     .foregroundColor(Color("colorBalanceText"))
                             }
-                        } .onDelete(perform: deleteCategory)
+                        }
+                        .onDelete(perform: { indexSet in
+                            categoryVM.deleteCategories(category: categories, at: indexSet, type: selectedType, transaction: transactionVM)
+                            playFeedbackHaptic(appVM.selectedFeedbackHaptic)
+                        })
                     }
                 }
                 .scrollContentBackground(.hidden)
@@ -62,19 +43,16 @@ struct CategoryView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        playFeedbackHaptic(selectedFeedbackHaptic)
+                        playFeedbackHaptic(appVM.selectedFeedbackHaptic)
                         dismiss()
                     } label: {
                         Text("Back")
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        playFeedbackHaptic(selectedFeedbackHaptic)
-                        showAddCategory.toggle()
-                    } label: {
+                    NavigationLink(destination: AddCategory(selectedType: selectedType), label: {
                         Text("New")
-                    }
+                    })
                 }
                 ToolbarItem(placement: .principal) {
                     Picker("Type", selection: $selectedType) {
@@ -85,27 +63,14 @@ struct CategoryView: View {
                 }
             }
         }
-        .sheet(isPresented: $showAddCategory) {
-            AddCategory(selectedType: selectedType)
-        }
-    }
-    
-    private func filteredCategories() -> [Category] {
-        return categories.filter { $0.type == selectedType
-        }
-    }
-    
-    private func deleteCategory(at offsets: IndexSet) {
-        let filtered = filteredCategories()
-        offsets.forEach { index in
-            categoryVM.deleteCategory(id: filtered[index].id)
-            transactionVM.loadData()
-        }
     }
 }
 
 struct CategoryView_Previews: PreviewProvider {
     static var previews: some View {
         CategoryView()
+            .environmentObject(AppViewModel())
+            .environmentObject(TransactionViewModel())
+            .environmentObject(CategoryViewModel())
     }
 }

@@ -4,33 +4,28 @@ import SwiftUI
 import RealmSwift
 
 struct WelcomeView: View {
+    @EnvironmentObject var appVM: AppViewModel
     @EnvironmentObject var categoryVM: CategoryViewModel
     
-    @AppStorage("hasRunBefore") private var hasRunBefore = false
-    @AppStorage("currencySymbol") private var currencySymbol: String = "USD"
-    @AppStorage("playFeedbackHaptic") private var selectedFeedbackHaptic: Bool = true
-    
     @State private var selectedCurrency: Currency = .usd
-    @State private var vibrateOnSilent: Bool = true
+    @State private var createCategories: Bool = true
     
     var body: some View {
         NavigationStack {
             ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)) {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(alignment: .center) {
-                        
                         VStack {
-                            Spacer(minLength: 50)
+                            Spacer(minLength: 100)
                             Image("icon")
                                 .resizable()
                                 .frame(width: 100, height: 100)
-                            Spacer(minLength: 50)
-                            Text("Welcome to the iWallet!")
+                            Spacer(minLength: 20)
+                            Text("iWallet")
                                 .foregroundColor(.gray).bold()
-                                .font(.title2)
+                                .font(.largeTitle)
                             Spacer(minLength: 50)
                         }
-                        
                         Section {
                             HStack {
                                 Text("Currency")
@@ -55,10 +50,13 @@ struct WelcomeView: View {
                         
                         VStack(alignment: .leading) {
                             HStack {
-                                Toggle("Basic categories", isOn: $vibrateOnSilent)
+                                Toggle("Basic categories", isOn: $createCategories)
                                     .toggleStyle(SwitchToggleStyle(tint: Color.green))
                             }
-                            Text("Note: Enabling this feature will create base categories for expenses and income.")
+                            HStack {
+                                Image(systemName: "exclamationmark.shield")
+                                Text("Note: Enabling this feature will create base categories for expenses and income.")
+                            }
                                 .font(.subheadline)
                                 .fontWeight(.ultraLight)
                         }
@@ -68,13 +66,12 @@ struct WelcomeView: View {
                         .cornerRadius(12.5)
                     }
                 }
-                
                 VStack {
                     Button {
-                        playFeedbackHaptic(selectedFeedbackHaptic)
-                        hasRunBefore = true
-                        currencySymbol = selectedCurrency.symbol
-                        if vibrateOnSilent {
+                        playFeedbackHaptic(appVM.selectedFeedbackHaptic)
+                        appVM.hasRunBefore = true
+                        appVM.currencySymbol = selectedCurrency.symbol
+                        if createCategories {
                             categoryVM.createDefaultCategories()
                         }
                     } label: {
