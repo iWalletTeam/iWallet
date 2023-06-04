@@ -50,7 +50,7 @@ struct CategoryView: View {
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: AddCategory(selectedType: selectedType), label: {
+                    NavigationLink(destination: AddCategoryView(selectedType: selectedType), label: {
                         Text("New")
                     })
                 }

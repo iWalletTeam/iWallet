@@ -1,13 +1,12 @@
-//  AddTransaction.swift
+//  AddTransactionView.swift
 
 import SwiftUI
 import RealmSwift
 
-struct AddTransaction: View {
+struct AddTransactionView: View {
     @EnvironmentObject var appVM: AppViewModel
     @EnvironmentObject var transactionVM: TransactionViewModel
     @Environment(\.dismiss) var dismiss
-    @ObservedResults(Category.self) var categories
     
     @FocusState private var amountIsFocused: Bool
     @FocusState private var noteIsFocused: Bool
@@ -50,8 +49,31 @@ struct AddTransaction: View {
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                             .background(Color("colorBalanceBG"))
                             .cornerRadius(10)
-                            .padding(.bottom, 15)
                             .focused($noteIsFocused)
+                        
+                        ScrollView(.horizontal) {
+                            HStack {
+                                let filterTransaction = transactionVM.filterTransactionsNote(category: selectedCategory, transactions: transactionVM.transactions)
+                                ForEach(filterTransaction.reversed(), id: \.self) { notes in
+                                    Button {
+                                        note = notes.note
+                                    } label: {
+                                        Text(notes.note)
+                                            .font(Font.caption)
+                                            .foregroundColor(Color(.systemGray2))
+                                            .padding(.vertical, 5)
+                                            .padding(.horizontal, 10)
+                                            .background(
+                                                RoundedRectangle(cornerRadius: 7, style: .continuous)
+                                                    .strokeBorder(Color(.systemGray2))
+                                            )
+                                            .padding(.bottom, 10)
+                                    }
+                                }
+                            }
+                            .padding(.horizontal, 10)
+                        }
+                        
                     } header: {
                         Text("Enter note:")
                             .font(.caption).textCase(.uppercase)
@@ -72,7 +94,7 @@ struct AddTransaction: View {
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .background(Color("colorBalanceBG"))
                         .cornerRadius(10)
-                            
+                        
                         HStack {
                             NavigationLink(destination: PickerCategoryView(selected: $selectedCategory, selectedType: selectedType), label: {
                                 if selectedCategory.name.isEmpty {
@@ -94,8 +116,6 @@ struct AddTransaction: View {
                                     .frame(maxWidth: .infinity)
                                     .background(Color(Colors.colorPickerBG))
                                     .cornerRadius(10)
-                                    
-                              
                                 } else {
                                     HStack {
                                         Text("Category:")
@@ -188,9 +208,10 @@ struct AddTransaction: View {
     }
 }
 
-struct AddTransaction_Previews: PreviewProvider {
+struct AddTransactionView_Previews: PreviewProvider {
     static var previews: some View {
-        AddTransaction(selectedCategory: Category())
+        AddTransactionView(selectedCategory: Category())
             .environmentObject(AppViewModel())
+            .environmentObject(TransactionViewModel())
     }
 }

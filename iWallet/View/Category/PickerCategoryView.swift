@@ -27,7 +27,7 @@ struct PickerCategoryView: View {
                         .padding(.horizontal)
                         
                         HStack {
-                            NavigationLink(destination: AddCategory(selectedType: selectedType), label: {
+                            NavigationLink(destination: AddCategoryView(selectedType: selectedType), label: {
                                 HStack {
                                     Text("Create category")
                                 }

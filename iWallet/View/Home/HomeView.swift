@@ -115,7 +115,7 @@ struct HomeView: View {
             .background(Color("colorBG"))
         }
         .sheet(isPresented: $showAddTransaction) {
-            AddTransaction(selectedCategory: Category(), selectedType: selectedCategoryType)
+            AddTransactionView(selectedCategory: Category(), selectedType: selectedCategoryType)
         }
     }
 }
@@ -125,5 +125,6 @@ struct HomeView_Previews: PreviewProvider {
         HomeView()
             .environmentObject(AppViewModel())
             .environmentObject(TransactionViewModel())
+            .environmentObject(CategoryViewModel())
     }
 }

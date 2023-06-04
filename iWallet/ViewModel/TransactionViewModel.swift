@@ -139,6 +139,25 @@ final class TransactionViewModel: ObservableObject {
         return groupedTransaction
     }
     
+    // MARK: AddTransactionView
+    // метод фильтрации транзакций для отбора уникальных заметок
+    func filterTransactionsNote(category: Category, transactions: [TransactionItem]) -> [TransactionItem] {
+        var groupedTransaction: [TransactionItem] = []
+        var uniqueNotes: [String] = []
+        
+        for transaction in transactions {
+            if category.id == transaction.categoryId {
+                if transaction.note.count != 0 {
+                    if !uniqueNotes.contains(transaction.note.description) {
+                        uniqueNotes.append(transaction.note.description)
+                        groupedTransaction.append(transaction)
+                    }
+                }
+            }
+        }
+        return groupedTransaction
+    }
+    
     // MARK: HomeView
     // Считает расход
     func totalExpenses() -> Float {

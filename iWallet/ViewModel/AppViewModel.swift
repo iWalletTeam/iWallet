@@ -12,7 +12,7 @@ import SwiftUI
 final class AppViewModel: ObservableObject {
     
     @AppStorage("playFeedbackHaptic") var selectedFeedbackHaptic: Bool = true
-    @AppStorage("hasRunBefore") var hasRunBefore = false
+    @AppStorage("hasRunBefore") var hasRunBefore: Bool = false
     @AppStorage("currencySymbol") var currencySymbol: String = "USD"
     
     init() {
@@ -20,8 +20,3 @@ final class AppViewModel: ObservableObject {
         Realm.Configuration.defaultConfiguration = config
     }
 }
-
-
-
-
-

@@ -1,8 +1,8 @@
-//  AddCategory.swift
+//  AddCategoryView.swift
 
 import SwiftUI
 
-struct AddCategory: View {
+struct AddCategoryView: View {
     @EnvironmentObject var appVM: AppViewModel
     @EnvironmentObject var categoryVM: CategoryViewModel
     @Environment(\.dismiss) var dismiss
@@ -71,7 +71,7 @@ struct AddCategory: View {
                         }
                         
                         Section {
-                            IconPicker(selectedImage: $selectedImage)
+                            IconPickerView(selectedImage: $selectedImage)
                                 .foregroundColor(Color(.black))
                                 .padding()
                                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -84,7 +84,7 @@ struct AddCategory: View {
                                 .padding(.leading, 10)
                         }
                         Section {
-                            ColorPicker(selectedColor: $selectedColor)
+                            ColorPickerView(selectedColor: $selectedColor)
                                 .padding(5)
                                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                                 .background(Color("colorBalanceBG"))
@@ -131,9 +131,9 @@ struct AddCategory: View {
     }
 }
 
-struct AddCategory_Previews: PreviewProvider {
+struct AddCategoryView_Previews: PreviewProvider {
     static var previews: some View {
-        AddCategory()
+        AddCategoryView()
             .environmentObject(AppViewModel())
     }
 }

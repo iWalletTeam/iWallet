@@ -1,8 +1,8 @@
-//  SFIconPicker.swift
+//  IconPickerView.swift
 
 import SwiftUI
 
-struct IconPicker: View {
+struct IconPickerView: View {
     @Binding var selectedImage: String
     
     var body: some View {
@@ -33,8 +33,8 @@ struct IconPicker: View {
     }
 }
 
-struct IconPicker_Previews: PreviewProvider {
+struct IconPickerView_Previews: PreviewProvider {
     static var previews: some View {
-        IconPicker(selectedImage: .constant("folder.circle"))
+        IconPickerView(selectedImage: .constant("folder.circle"))
     }
 }

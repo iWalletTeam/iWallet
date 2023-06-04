@@ -1,7 +1,8 @@
-//  PreviewCard.swift
+//  PreviewCardView.swift
 
 import SwiftUI
 
+@ViewBuilder
 func previewHomeTransaction() -> some View {
     VStack {
         VStack(alignment: .center) {
@@ -28,6 +29,7 @@ func previewHomeTransaction() -> some View {
     }
 }
 
+@ViewBuilder
 func previewCardTransaction() -> some View {
     VStack {
         VStack(alignment: .center) {
@@ -53,7 +55,7 @@ func previewCardTransaction() -> some View {
     }
 }
 
-
+@ViewBuilder
 func previewCardCategory() -> some View {
     VStack {
         VStack(alignment: .center) {
