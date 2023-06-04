@@ -51,14 +51,14 @@ struct AddTransactionView: View {
                             .cornerRadius(10)
                             .focused($noteIsFocused)
                         
-                        ScrollView(.horizontal) {
+                        ScrollView(.horizontal, showsIndicators: false) {
                             HStack {
                                 let filterTransaction = transactionVM.filterTransactionsNote(category: selectedCategory, transactions: transactionVM.transactions)
                                 ForEach(filterTransaction.reversed(), id: \.self) { notes in
                                     Button {
                                         note = notes.note
                                     } label: {
-                                        Text(notes.note)
+                                        Text(String(notes.note.prefix(20)))
                                             .font(Font.caption)
                                             .foregroundColor(Color(.systemGray2))
                                             .padding(.vertical, 5)
