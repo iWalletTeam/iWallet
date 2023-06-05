@@ -73,7 +73,6 @@ struct AddTransactionView: View {
                             }
                             .padding(.horizontal, 10)
                         }
-                        
                     } header: {
                         Text("Enter note:")
                             .font(.caption).textCase(.uppercase)
@@ -90,10 +89,16 @@ struct AddTransactionView: View {
                             }
                         }
                         .pickerStyle(SegmentedPickerStyle())
-                        .padding()
+                        .padding(10)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .background(Color("colorBalanceBG"))
                         .cornerRadius(10)
+                        .onChange(of: selectedType) { _ in
+                            withAnimation() {
+                                selectedCategory = Category()
+                            }
+                            
+                        }
                         
                         HStack {
                             NavigationLink(destination: PickerCategoryView(selected: $selectedCategory, selectedType: selectedType), label: {
@@ -127,15 +132,15 @@ struct AddTransactionView: View {
                                             .frame(width: 30, height: 30)
                                             .background(Color(selectedCategory.color))
                                             .cornerRadius(7.5)
-                                            .padding(0)
                                         Text(selectedCategory.name)
                                             .font(.headline)
                                             .fontWeight(.light)
                                     }
+                                    .padding(5)
                                 }
                             })
                             .foregroundColor(Color(Colors.mainText))
-                            .padding()
+                            .padding(10)
                             .background(Color(Colors.colorBalanceBG))
                             .cornerRadius(10)
                         }
