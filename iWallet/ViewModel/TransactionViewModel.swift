@@ -59,7 +59,7 @@ final class TransactionViewModel: ObservableObject {
     }
     
     // Метод для удаления транзакций
-    func deleteTransaction(withId id: ObjectId) {
+    private func deleteTransaction(withId id: ObjectId) {
         do {
             let realm = try Realm()
             
@@ -81,6 +81,84 @@ final class TransactionViewModel: ObservableObject {
         }
     }
     
+    // Метод удаления транзакций
+    func deleteTransaction(at offsets: IndexSet, from sortedTransactions: [TransactionItem]) {
+        offsets.forEach { index in
+            let transaction = sortedTransactions[index]
+            deleteTransaction(withId: transaction.id)
+        }
+    }
+    
+    // MARK: TransactionView
+    // Метод для группировки транзакций по дате
+    func transactionsByDate(_ transactions: [TransactionItem]) -> [Date: [TransactionItem]] {
+        var groupedTransactions: [Date: [TransactionItem]] = [:]
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
+        
+        for transaction in transactions {
+            let dateString = dateFormatter.string(from: transaction.date)
+            if let date = dateFormatter.date(from: dateString) {
+                if groupedTransactions[date] == nil {
+                    groupedTransactions[date] = []
+                }
+                groupedTransactions[date]?.append(transaction)
+            }
+        }
+        
+        return groupedTransactions
+    }
+    
+    // Метод фильтрации категорий
+    func filterCategories(categories: [Category], transaction: TransactionItem) -> Category? {
+        for category in categories {
+            if category.id == transaction.categoryId {
+                return category
+            }
+        }
+        return nil
+    }
+    
+    // метод сортировки транзакций по дате
+    func sortTransactionsByDate(transactions: [TransactionItem]) -> [TransactionItem] {
+        return transactions.sorted(by: { $0.date > $1.date })
+    }
+    
+    // MARK: TransactionCategoryView
+    // метод фильтрации транзакции с выбранной категорией
+    func filterTransaction(category: Category, transactions: [TransactionItem]) -> [TransactionItem] {
+        var groupedTransaction: [TransactionItem] = []
+        
+        for transaction in transactions {
+            if category.id == transaction.categoryId {
+                groupedTransaction.append(transaction)
+            }
+        }
+        return groupedTransaction
+    }
+    
+    // MARK: AddTransactionView
+    // метод фильтрации транзакций для отбора уникальных заметок
+    func filterTransactionsNote(category: Category, transactions: [TransactionItem]) -> [TransactionItem] {
+        var groupedTransaction: [TransactionItem] = []
+        var uniqueNotes: [String] = []
+        
+            for transaction in transactions.prefix(20) {
+                if category.id == transaction.categoryId {
+                if transaction.note.count != 0 {
+                    if !uniqueNotes.contains(transaction.note.description) {
+                        uniqueNotes.append(transaction.note.description)
+                        groupedTransaction.append(transaction)
+                    }
+                }
+            }
+        }
+        return groupedTransaction
+    }
+    
+    // MARK: HomeView
     // Считает расход
     func totalExpenses() -> Float {
         var expenses: Float = 0

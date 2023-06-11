@@ -4,8 +4,6 @@ import SwiftUI
 
 struct BalanceView: View {
     
-    @AppStorage("currencySymbol") private var currencySymbol: String = "USD"
-    
     let amount: Float
     let curren: String
     let type: String

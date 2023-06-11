@@ -1,8 +1,8 @@
-//  SwiftUIView.swift
+//  ColorPickerView.swift
 
 import SwiftUI
 
-struct ColorPicker: View {
+struct ColorPickerView: View {
     @Binding var selectedColor: String
     
     var body: some View {
@@ -18,13 +18,14 @@ struct ColorPicker: View {
                             selectedColor = color
                         }
                 }
-            } .padding()
+            }
+            .padding()
         }
     }
 }
 
-struct ColorPicker_Previews: PreviewProvider {
+struct ColorPickerView_Previews: PreviewProvider {
     static var previews: some View {
-        ColorPicker(selectedColor: .constant("colorBlue"))
+        ColorPickerView(selectedColor: .constant("colorBlue"))
     }
 }

@@ -27,15 +27,15 @@
 "Please enter amount" = "Пожалуйста введите сумму";
 "Please select a category" = "Пожалуйста, выберите категорию";
 "Okay" = "Хорошо";
+"Select a category" = "Выберите категорию";
+"Category:" = "Категория:";
+"Addendum" = "Добавление";
 
 // TransactionView
 "Transactions" = "Транзакции";
 "Back" = "Назад";
 
 // AddCategoryView
-"Welcome" = "Добро пожаловать!";
-"The list of categories is currently empty," = "Список категорий в настоящее время пуст,";
-"please add category." = "пожалуйста добавьте категорию.";
 "Back" = "Назад";
 "New" = "Новая";
 
@@ -64,11 +64,17 @@
 "Vibration" = "Вибрация";
 "https://idevnva.com/" = "https://idevnva.com/iwallet";
 "https://t.me/idevnva" = "https://t.me/idevnva";
+"App version: 1.1.5" = "Версия приложения: 1.1.5";
 
 //PreviewCard
 "Welcome" = "Добро пожаловать!";
 "The list of transactions is currently empty," = "Список транзакций в настоящее время пуст,";
 "please add transaction." = "пожалуйста добавьте транзакцию.";
+"Welcome" = "Добро пожаловать!";
+"The list of categories is currently empty," = "Список категорий в настоящее время пуст,";
+"please add category." = "пожалуйста добавьте категорию.";
+"There are currently no categories." = "В настоящее время нет категорий.";
+"Please add." = "Пожалуйста, добавьте.";
 
 // DefaultCategories
 // Все категории для расхода
@@ -92,6 +98,7 @@
 "Entertainment" = "Развлечение";
 "Technique" = "Техника";
 "Transport" = "Транспорт";
+
 // Все категории для дохода
 "Rent" = "Аренда";
 "Exchange" = "Биржа";
@@ -102,9 +109,13 @@
 "Interest on accounts" = "Проценты по счетам";
 
 // WelcomeView
-"Welcome to the iWallet!" = "Добро пожаловать в iWallet!";
+"iWallet" = "iWallet";
 "Currency" = "Валюта";
 "Initial application setup" = "Первоначальная настройка приложения:";
 "Basic categories" = "Базовые категории";
-"Note: Enabling this feature will create base categories for expenses and income." = "Примечание. При включении этой функции будут созданы базовые категории расходов и доходов.";
+"Note: Enabling this feature will create base categories for expenses and income." = "Примечание: При включении этой функции будут созданы базовые категории расходов и доходов.";
 "Continue" = "Продолжить";
+
+// PickerCategoryView
+"Categories" = "Категории";
+"Create category" = "Создать категорию";

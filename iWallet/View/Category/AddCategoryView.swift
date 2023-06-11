@@ -1,19 +1,19 @@
-//  AddCategory.swift
+//  AddCategoryView.swift
 
 import SwiftUI
 
-struct AddCategory: View {
-    @EnvironmentObject var viewModel: AppViewModel
+struct AddCategoryView: View {
+    @EnvironmentObject var appVM: AppViewModel
     @EnvironmentObject var categoryVM: CategoryViewModel
     @Environment(\.dismiss) var dismiss
     
-    @AppStorage("playFeedbackHaptic") private var selectedFeedbackHaptic: Bool = true
     @FocusState private var nameIsFocused: Bool
     
     @State var selectedType: CategoryType = .expense
     @State private var name: String = ""
     @State private var selectedImage: String = "folder.circle"
     @State private var selectedColor: String = "colorBlue"
+    @State private var showAlert: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -71,7 +71,7 @@ struct AddCategory: View {
                         }
                         
                         Section {
-                            IconPicker(selectedImage: $selectedImage)
+                            IconPickerView(selectedImage: $selectedImage)
                                 .foregroundColor(Color(.black))
                                 .padding()
                                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -84,7 +84,7 @@ struct AddCategory: View {
                                 .padding(.leading, 10)
                         }
                         Section {
-                            ColorPicker(selectedColor: $selectedColor)
+                            ColorPickerView(selectedColor: $selectedColor)
                                 .padding(5)
                                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                                 .background(Color("colorBalanceBG"))
@@ -104,20 +104,12 @@ struct AddCategory: View {
             .navigationBarTitle("Create a category", displayMode: .inline)
             .scrollDismissesKeyboard(.immediately)
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button {
-                        playFeedbackHaptic(selectedFeedbackHaptic)
-                        dismiss()
-                    } label: {
-                        Text("Back")
-                    }
-                }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         if name.isEmpty {
-                            
+                            showAlert.toggle()
                         } else {
-                            playFeedbackHaptic(selectedFeedbackHaptic)
+                            playFeedbackHaptic(appVM.selectedFeedbackHaptic)
                             categoryVM.saveCategory(name: name, icon: selectedImage, color: selectedColor, type: selectedType)
                             dismiss()
                         }
@@ -131,15 +123,17 @@ struct AddCategory: View {
                     }
                 }
             }
+            .alert("Пожалуйста введите название категории", isPresented: $showAlert) {
+                    Button("Okay", role: .cancel) { 
+                }
+            }
         }
     }
 }
 
-struct AddCategory_Previews: PreviewProvider {
+struct AddCategoryView_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModel = AppViewModel()
-        
-        AddCategory()
-            .environmentObject(viewModel)
+        AddCategoryView()
+            .environmentObject(AppViewModel())
     }
 }

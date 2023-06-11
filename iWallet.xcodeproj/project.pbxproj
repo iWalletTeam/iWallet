@@ -14,9 +14,9 @@
 		08558B9829D35F890047F959 /* BalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08558B9729D35F890047F959 /* BalanceView.swift */; };
 		08558B9A29D36D6D0047F959 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08558B9929D36D6D0047F959 /* SettingView.swift */; };
 		08558B9C29D37DDC0047F959 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08558B9B29D37DDC0047F959 /* CategoryView.swift */; };
-		08558B9E29D380920047F959 /* AddCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08558B9D29D380920047F959 /* AddCategory.swift */; };
-		08558BA029D381F10047F959 /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08558B9F29D381F10047F959 /* ColorPicker.swift */; };
-		08558BA229D388080047F959 /* IconPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08558BA129D388080047F959 /* IconPicker.swift */; };
+		08558B9E29D380920047F959 /* AddCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08558B9D29D380920047F959 /* AddCategoryView.swift */; };
+		08558BA029D381F10047F959 /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08558B9F29D381F10047F959 /* ColorPickerView.swift */; };
+		08558BA229D388080047F959 /* IconPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08558BA129D388080047F959 /* IconPickerView.swift */; };
 		08558BA629D394950047F959 /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08558BA529D394950047F959 /* AppViewModel.swift */; };
 		08558BA929D394F40047F959 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 08558BA829D394F40047F959 /* Realm */; };
 		08558BAB29D394F40047F959 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 08558BAA29D394F40047F959 /* RealmSwift */; };
@@ -31,13 +31,14 @@
 		08645FE92A1E835D0059BDCB /* PlayFeedbackHaptic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08645FE82A1E835D0059BDCB /* PlayFeedbackHaptic.swift */; };
 		08645FEE2A1EA7280059BDCB /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08645FED2A1EA7280059BDCB /* CategoryViewModel.swift */; };
 		08645FF02A1FBD030059BDCB /* TransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08645FEF2A1FBD030059BDCB /* TransactionViewModel.swift */; };
-		086A5A2029E34B0000D044F7 /* PreviewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086A5A1F29E34B0000D044F7 /* PreviewCard.swift */; };
+		086A5A2029E34B0000D044F7 /* PreviewCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086A5A1F29E34B0000D044F7 /* PreviewCardView.swift */; };
 		0880C66D29E8682B00E088DB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0880C66F29E8682B00E088DB /* Localizable.strings */; };
 		0880C67529E8AB9200E088DB /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0880C67429E8AB9200E088DB /* WelcomeView.swift */; };
 		08A2C2752A24C77400B8FA6D /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A2C2742A24C77400B8FA6D /* Icons.swift */; };
 		08AE95FF29E3236600F8AFA7 /* TransactionCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AE95FE29E3236600F8AFA7 /* TransactionCategoryView.swift */; };
-		08D38C5029D465640078C6C4 /* AddTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D38C4F29D465640078C6C4 /* AddTransaction.swift */; };
+		08D38C5029D465640078C6C4 /* AddTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D38C4F29D465640078C6C4 /* AddTransactionView.swift */; };
 		08D38C5429D48FE00078C6C4 /* TransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D38C5329D48FE00078C6C4 /* TransactionView.swift */; };
+		08F15F1A2A2A95890009FC0A /* PickerCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F15F192A2A95890009FC0A /* PickerCategoryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,9 +50,9 @@
 		08558B9729D35F890047F959 /* BalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceView.swift; sourceTree = "<group>"; };
 		08558B9929D36D6D0047F959 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		08558B9B29D37DDC0047F959 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
-		08558B9D29D380920047F959 /* AddCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategory.swift; sourceTree = "<group>"; };
-		08558B9F29D381F10047F959 /* ColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
-		08558BA129D388080047F959 /* IconPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPicker.swift; sourceTree = "<group>"; };
+		08558B9D29D380920047F959 /* AddCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryView.swift; sourceTree = "<group>"; };
+		08558B9F29D381F10047F959 /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
+		08558BA129D388080047F959 /* IconPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPickerView.swift; sourceTree = "<group>"; };
 		08558BA529D394950047F959 /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
 		086459882A201BB0006C28AB /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		0864598D2A20269C006C28AB /* CategoryItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItemView.swift; sourceTree = "<group>"; };
@@ -64,14 +65,15 @@
 		08645FE82A1E835D0059BDCB /* PlayFeedbackHaptic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayFeedbackHaptic.swift; sourceTree = "<group>"; };
 		08645FED2A1EA7280059BDCB /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
 		08645FEF2A1FBD030059BDCB /* TransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewModel.swift; sourceTree = "<group>"; };
-		086A5A1F29E34B0000D044F7 /* PreviewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCard.swift; sourceTree = "<group>"; };
+		086A5A1F29E34B0000D044F7 /* PreviewCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCardView.swift; sourceTree = "<group>"; };
 		0880C66E29E8682B00E088DB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0880C67129E86A6500E088DB /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0880C67429E8AB9200E088DB /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		08A2C2742A24C77400B8FA6D /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
 		08AE95FE29E3236600F8AFA7 /* TransactionCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCategoryView.swift; sourceTree = "<group>"; };
-		08D38C4F29D465640078C6C4 /* AddTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransaction.swift; sourceTree = "<group>"; };
+		08D38C4F29D465640078C6C4 /* AddTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionView.swift; sourceTree = "<group>"; };
 		08D38C5329D48FE00078C6C4 /* TransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionView.swift; sourceTree = "<group>"; };
+		08F15F192A2A95890009FC0A /* PickerCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerCategoryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,9 +167,9 @@
 			isa = PBXGroup;
 			children = (
 				08558B9729D35F890047F959 /* BalanceView.swift */,
-				08558B9F29D381F10047F959 /* ColorPicker.swift */,
-				08558BA129D388080047F959 /* IconPicker.swift */,
-				086A5A1F29E34B0000D044F7 /* PreviewCard.swift */,
+				08558B9F29D381F10047F959 /* ColorPickerView.swift */,
+				08558BA129D388080047F959 /* IconPickerView.swift */,
+				086A5A1F29E34B0000D044F7 /* PreviewCardView.swift */,
 			);
 			path = Templates;
 			sourceTree = "<group>";
@@ -217,8 +219,9 @@
 			isa = PBXGroup;
 			children = (
 				08558B9B29D37DDC0047F959 /* CategoryView.swift */,
-				08558B9D29D380920047F959 /* AddCategory.swift */,
+				08558B9D29D380920047F959 /* AddCategoryView.swift */,
 				0864598D2A20269C006C28AB /* CategoryItemView.swift */,
+				08F15F192A2A95890009FC0A /* PickerCategoryView.swift */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -226,7 +229,7 @@
 		08D1C19A29E0A39200B58CDE /* Transaction */ = {
 			isa = PBXGroup;
 			children = (
-				08D38C4F29D465640078C6C4 /* AddTransaction.swift */,
+				08D38C4F29D465640078C6C4 /* AddTransactionView.swift */,
 				08D38C5329D48FE00078C6C4 /* TransactionView.swift */,
 				08AE95FE29E3236600F8AFA7 /* TransactionCategoryView.swift */,
 			);
@@ -345,10 +348,11 @@
 				08558B9829D35F890047F959 /* BalanceView.swift in Sources */,
 				08645FE92A1E835D0059BDCB /* PlayFeedbackHaptic.swift in Sources */,
 				08645FE32A1E817D0059BDCB /* ExtensionFloat.swift in Sources */,
-				086A5A2029E34B0000D044F7 /* PreviewCard.swift in Sources */,
+				086A5A2029E34B0000D044F7 /* PreviewCardView.swift in Sources */,
 				08AE95FF29E3236600F8AFA7 /* TransactionCategoryView.swift in Sources */,
-				08D38C5029D465640078C6C4 /* AddTransaction.swift in Sources */,
-				08558BA029D381F10047F959 /* ColorPicker.swift in Sources */,
+				08D38C5029D465640078C6C4 /* AddTransactionView.swift in Sources */,
+				08558BA029D381F10047F959 /* ColorPickerView.swift in Sources */,
+				08F15F1A2A2A95890009FC0A /* PickerCategoryView.swift in Sources */,
 				08645FDC2A1E80460059BDCB /* CategoryModel.swift in Sources */,
 				08645FF02A1FBD030059BDCB /* TransactionViewModel.swift in Sources */,
 				08D38C5429D48FE00078C6C4 /* TransactionView.swift in Sources */,
@@ -361,9 +365,9 @@
 				0864598E2A20269C006C28AB /* CategoryItemView.swift in Sources */,
 				08645FE52A1E81E60059BDCB /* CurrencyModel.swift in Sources */,
 				08558B9C29D37DDC0047F959 /* CategoryView.swift in Sources */,
-				08558BA229D388080047F959 /* IconPicker.swift in Sources */,
+				08558BA229D388080047F959 /* IconPickerView.swift in Sources */,
 				08558B8629D35EA40047F959 /* iWalletApp.swift in Sources */,
-				08558B9E29D380920047F959 /* AddCategory.swift in Sources */,
+				08558B9E29D380920047F959 /* AddCategoryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,7 +508,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_ASSET_PATHS = "\"iWallet/Preview Content\"";
 				DEVELOPMENT_TEAM = 4243BL8MP3;
 				ENABLE_PREVIEWS = YES;
@@ -520,7 +524,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.4;
+				MARKETING_VERSION = 1.1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.idevnva.iwallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -538,7 +542,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_ASSET_PATHS = "\"iWallet/Preview Content\"";
 				DEVELOPMENT_TEAM = 4243BL8MP3;
 				ENABLE_PREVIEWS = YES;
@@ -554,7 +558,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.4;
+				MARKETING_VERSION = 1.1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.idevnva.iwallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

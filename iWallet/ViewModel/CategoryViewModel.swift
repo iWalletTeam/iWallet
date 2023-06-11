@@ -56,7 +56,6 @@ final class CategoryViewModel: ObservableObject {
             try realm.write {
                 realm.add(newCategory)
             }
-            
             // отладочное сообщение
             return print("Категория сохранена: \(newCategory)")
         } catch {
@@ -83,6 +82,44 @@ final class CategoryViewModel: ObservableObject {
             }
         } catch {
             print("Error deleting category: \(error)")
+        }
+    }
+    
+    // MARK: HomeView
+    // Функция фильтрует категории из массива categories, сохраняя только те, сумма транзакций которых для заданного типа type (доход или расход) больше 0
+    func filteredCategories(categories: [Category], type: CategoryType) -> [Category] {
+        var result: [Category] = []
+        for category in categories {
+            if category.categoryAmount(type: type) > 0 {
+                result.append(category)
+            }
+        }
+        return result
+    }
+    
+    // Функция которая фильтрует список категорий, чтобы найти только те, которые имеют транзакции определенного типа.
+    func categoriesWithTransaction(categories: Results<Category>, type: CategoryType) -> [Category] {
+        var result: [Category] = []
+        for category in categories {
+            if category.hasTransactions(type: type) {
+                result.append(category)
+            }
+        }
+        return result
+    }
+    
+    // MARK: CategoryView
+    func filteredCategory(category: Results<Category>, type: CategoryType) -> [Category] {
+        return category.filter { $0.type == type
+        }
+    }
+    
+    func deleteCategories(category: Results<Category>, at offsets: IndexSet, type: CategoryType, transaction: TransactionViewModel) {
+        let filtered = filteredCategory(category: category, type: type)
+        offsets.forEach { index in
+            deleteCategory(id: filtered[index].id)
+            loadData()
+            transaction.loadData()
         }
     }
 }
