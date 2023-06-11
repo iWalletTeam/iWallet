@@ -145,8 +145,8 @@ final class TransactionViewModel: ObservableObject {
         var groupedTransaction: [TransactionItem] = []
         var uniqueNotes: [String] = []
         
-        for transaction in transactions {
-            if category.id == transaction.categoryId {
+            for transaction in transactions.prefix(20) {
+                if category.id == transaction.categoryId {
                 if transaction.note.count != 0 {
                     if !uniqueNotes.contains(transaction.note.description) {
                         uniqueNotes.append(transaction.note.description)
