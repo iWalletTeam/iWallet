@@ -3,6 +3,7 @@
 import SwiftUI
 
 struct BalanceView: View {
+    @EnvironmentObject var appVM: AppViewModel
     
     let amount: Float
     let curren: String
@@ -20,7 +21,7 @@ struct BalanceView: View {
                         .background(iconBG)
                         .cornerRadius(7.5)
                     Spacer()
-                    Text("\(amount.formattedWithSeparatorAndCurrency()) \(curren)")
+                    Text("\(amount.formattedWithSeparatorAndCurrency(roundingNumbers: appVM.roundingNumbers)) \(curren)")
                         .font(.headline)
                         .fontWeight(.bold)
                         .foregroundColor(Color(Colors.mainText))

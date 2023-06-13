@@ -24,7 +24,9 @@ struct TransactionView: View {
                             
                             ForEach(sortedTransactions, id: \.self) { transaction in
                                 if let category = transactionVM.filterCategories(categories: Array(categories), transaction: transaction) {
-                                    transactionRow(transaction: transaction, category: category)
+                                    NavigationLink(destination: EditTransactionView(selectedTransaction: transaction)) {
+                                        transactionRow(transaction: transaction, category: category)
+                                    }
                                 }
                             }
                             .onDelete(perform: { indexSet in
@@ -74,10 +76,10 @@ struct TransactionView: View {
                 VStack(alignment: .leading) {
                     HStack {
                         if transaction.type == CategoryType.expense {
-                            Text("-\(transaction.amount.formattedWithSeparatorAndCurrency()) \(appVM.currencySymbol)")
+                            Text("-\(transaction.amount.formattedWithSeparatorAndCurrency(roundingNumbers: appVM.roundingNumbers)) \(appVM.currencySymbol)")
                                 .font(.title3).bold()
                         } else {
-                            Text("\(transaction.amount.formattedWithSeparatorAndCurrency()) \(appVM.currencySymbol)")
+                            Text("\(transaction.amount.formattedWithSeparatorAndCurrency(roundingNumbers: appVM.roundingNumbers)) \(appVM.currencySymbol)")
                                 .font(.title3).bold()
                         }
                         Spacer()

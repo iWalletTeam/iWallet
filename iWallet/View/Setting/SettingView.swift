@@ -79,6 +79,15 @@ struct SettingView: View {
                                 .cornerRadius(7.5)
                             Toggle("Vibration", isOn: $appVM.selectedFeedbackHaptic)
                         }
+                        
+                        HStack {
+                            Text(appVM.roundingNumbers ? "0" : "0.0")
+                                .foregroundColor(Color("colorBlack"))
+                                .frame(width: 30, height: 30)
+                                .background(Color(Colors.colorGreen))
+                                .cornerRadius(7.5)
+                            Toggle("Rounding numbers", isOn: $appVM.roundingNumbers)
+                        }
                     }
                     
                     Section {
@@ -125,7 +134,7 @@ struct SettingView: View {
                 }
                 VStack {
                     Image(systemName: "exclamationmark.shield")
-                    Text("App version: 1.1.5")
+                    Text("App version: 1.1.6")
                 }
                 .font(.caption2).bold()
                 .padding()
