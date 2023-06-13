@@ -9,6 +9,8 @@ import SwiftUI
 
 struct CategoryItemView: View {
     
+    @EnvironmentObject var appVM: AppViewModel
+    
     let categoryColor: String
     let categoryIcon: String
     let categoryName: String
@@ -40,7 +42,7 @@ struct CategoryItemView: View {
                 
                 Spacer()
                 
-                Text("\(totalAmount.formattedWithSeparatorAndCurrency()) \(currencySymbol)")
+                Text("\(totalAmount.formattedWithSeparatorAndCurrency(roundingNumbers: appVM.roundingNumbers)) \(currencySymbol)")
                     .font(.headline).bold()
                     .foregroundColor(Color(Colors.mainText))
                 

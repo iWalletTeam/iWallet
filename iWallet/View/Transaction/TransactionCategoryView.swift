@@ -8,7 +8,7 @@ struct TransactionCategoryView: View {
     @EnvironmentObject var transactionVM: TransactionViewModel
     @ObservedResults(TransactionItem.self) var transactions
     
-    @Binding var selectedCategory: Category
+    @State var selectedCategory: Category
     
     var filteredTransactions: [TransactionItem] {
         transactionVM.filterTransaction(category: selectedCategory, transactions: Array(transactions))
@@ -25,55 +25,57 @@ struct TransactionCategoryView: View {
                         let sortedTransactions = transactionVM.sortTransactionsByDate(transactions: groupedTransactions[date]!)
                         
                         ForEach(sortedTransactions, id: \.self) { transaction in
-                            VStack(alignment: .leading, spacing: 0) {
-                                HStack {
+                            NavigationLink(destination: EditTransactionView(selectedTransaction: transaction)) {
+                                VStack(alignment: .leading, spacing: 0) {
                                     HStack {
-                                        Divider()
-                                            .foregroundColor(Color(selectedCategory.color))
-                                            .frame(width: 5, height: 72)
-                                            .background(Color(selectedCategory.color))
-                                    } .padding(.trailing, 3)
-                                    
-                                    VStack(alignment: .leading) {
                                         HStack {
-                                            if transaction.type == CategoryType.expense {
-                                                Text("-\(transaction.amount.formattedWithSeparatorAndCurrency()) \(appVM.currencySymbol)")
-                                                    .font(.title3).bold()
-                                            } else {
-                                                Text("\(transaction.amount.formattedWithSeparatorAndCurrency()) \(appVM.currencySymbol)")
-                                                    .font(.title3).bold()
-                                            }
-                                            Spacer()
+                                            Divider()
+                                                .foregroundColor(Color(selectedCategory.color))
+                                                .frame(width: 5, height: 72)
+                                                .background(Color(selectedCategory.color))
+                                        } .padding(.trailing, 3)
+                                        
+                                        VStack(alignment: .leading) {
                                             HStack {
-                                                Text(selectedCategory.name)
-                                                    .foregroundColor(Color("colorBalanceText")).textCase(.uppercase)
-                                                    .font(.caption)
-                                                    .multilineTextAlignment(.trailing)
-                                                    .dynamicTypeSize(.small)
-                                                    .padding(0)
-                                                Image(systemName: selectedCategory.icon)
-                                                    .font(.caption).dynamicTypeSize(.small)
-                                                    .foregroundColor(.black)
-                                                    .frame(width: 20, height: 20)
-                                                    .background(Color(selectedCategory.color))
-                                                    .cornerRadius(5)
-                                                    .padding(0)
-                                            } .padding(0)
-                                        }
-                                        HStack {
-                                            Text(transaction.note)
-                                                .foregroundColor(Color(.gray)).textCase(.uppercase)
-                                                .font(.subheadline).dynamicTypeSize(.small)
-                                            Spacer()
-                                            Text(selectedCategory.type.localizedName())
-                                                .foregroundColor(Color(.gray)).textCase(.uppercase)
-                                                .font(.subheadline).dynamicTypeSize(.small)
-                                        }
-                                    }    .padding(.leading, 10)
+                                                if transaction.type == CategoryType.expense {
+                                                    Text("-\(transaction.amount.formattedWithSeparatorAndCurrency(roundingNumbers: appVM.roundingNumbers)) \(appVM.currencySymbol)")
+                                                        .font(.title3).bold()
+                                                } else {
+                                                    Text("\(transaction.amount.formattedWithSeparatorAndCurrency(roundingNumbers: appVM.roundingNumbers)) \(appVM.currencySymbol)")
+                                                        .font(.title3).bold()
+                                                }
+                                                Spacer()
+                                                HStack {
+                                                    Text(selectedCategory.name)
+                                                        .foregroundColor(Color("colorBalanceText")).textCase(.uppercase)
+                                                        .font(.caption)
+                                                        .multilineTextAlignment(.trailing)
+                                                        .dynamicTypeSize(.small)
+                                                        .padding(0)
+                                                    Image(systemName: selectedCategory.icon)
+                                                        .font(.caption).dynamicTypeSize(.small)
+                                                        .foregroundColor(.black)
+                                                        .frame(width: 20, height: 20)
+                                                        .background(Color(selectedCategory.color))
+                                                        .cornerRadius(5)
+                                                        .padding(0)
+                                                } .padding(0)
+                                            }
+                                            HStack {
+                                                Text(transaction.note)
+                                                    .foregroundColor(Color(.gray)).textCase(.uppercase)
+                                                    .font(.subheadline).dynamicTypeSize(.small)
+                                                Spacer()
+                                                Text(selectedCategory.type.localizedName())
+                                                    .foregroundColor(Color(.gray)).textCase(.uppercase)
+                                                    .font(.subheadline).dynamicTypeSize(.small)
+                                            }
+                                        }    .padding(.leading, 10)
+                                    }
                                 }
+                                .padding(.vertical, 5)
+                                .frame(height: 50)
                             }
-                            .padding(.vertical, 5)
-                            .frame(height: 50)
                         }
                         .onDelete(perform: { indexSet in
                             transactionVM.deleteTransaction(at: indexSet, from: sortedTransactions)
@@ -83,6 +85,7 @@ struct TransactionCategoryView: View {
                 }
             }
         }
+        .navigationTitle(selectedCategory.name)
         .background(Color("colorBG"))
         .scrollContentBackground(.hidden)
         .toolbar {
@@ -99,8 +102,6 @@ struct TransactionCategoryView: View {
 
 struct TransactionCategoryView_Previews: PreviewProvider {
     static var previews: some View {
-        let exampleCategory = Category(value: ["name": "Транспорт", "icon": "bus.fill", "color": "colorGray1", "type": CategoryType.expense] as [String : Any])
-        
-        TransactionCategoryView(selectedCategory: Binding(get: { exampleCategory }, set: { _ in }))
+        TransactionCategoryView(selectedCategory: Category())
     }
 }

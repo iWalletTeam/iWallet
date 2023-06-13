@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0812FA482A39085A00764C0E /* EditTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0812FA472A39085A00764C0E /* EditTransactionView.swift */; };
 		08558B8629D35EA40047F959 /* iWalletApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08558B8529D35EA40047F959 /* iWalletApp.swift */; };
 		08558B8829D35EA40047F959 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08558B8729D35EA40047F959 /* HomeView.swift */; };
 		08558B8A29D35EA40047F959 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08558B8929D35EA40047F959 /* Assets.xcassets */; };
@@ -42,6 +43,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0812FA472A39085A00764C0E /* EditTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTransactionView.swift; sourceTree = "<group>"; };
 		08558B8229D35EA40047F959 /* iWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08558B8529D35EA40047F959 /* iWalletApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iWalletApp.swift; sourceTree = "<group>"; };
 		08558B8729D35EA40047F959 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 				08D38C4F29D465640078C6C4 /* AddTransactionView.swift */,
 				08D38C5329D48FE00078C6C4 /* TransactionView.swift */,
 				08AE95FE29E3236600F8AFA7 /* TransactionCategoryView.swift */,
+				0812FA472A39085A00764C0E /* EditTransactionView.swift */,
 			);
 			path = Transaction;
 			sourceTree = "<group>";
@@ -364,6 +367,7 @@
 				08645FDE2A1E808E0059BDCB /* CategoryTypeModel.swift in Sources */,
 				0864598E2A20269C006C28AB /* CategoryItemView.swift in Sources */,
 				08645FE52A1E81E60059BDCB /* CurrencyModel.swift in Sources */,
+				0812FA482A39085A00764C0E /* EditTransactionView.swift in Sources */,
 				08558B9C29D37DDC0047F959 /* CategoryView.swift in Sources */,
 				08558BA229D388080047F959 /* IconPickerView.swift in Sources */,
 				08558B8629D35EA40047F959 /* iWalletApp.swift in Sources */,
@@ -508,7 +512,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"iWallet/Preview Content\"";
 				DEVELOPMENT_TEAM = 4243BL8MP3;
 				ENABLE_PREVIEWS = YES;
@@ -524,7 +528,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.5;
+				MARKETING_VERSION = 1.1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.idevnva.iwallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -542,7 +546,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"iWallet/Preview Content\"";
 				DEVELOPMENT_TEAM = 4243BL8MP3;
 				ENABLE_PREVIEWS = YES;
@@ -558,7 +562,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.5;
+				MARKETING_VERSION = 1.1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.idevnva.iwallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

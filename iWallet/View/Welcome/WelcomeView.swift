@@ -28,6 +28,11 @@ struct WelcomeView: View {
                         }
                         Section {
                             HStack {
+                                Text(selectedCurrency.symbol)
+                                    .foregroundColor(Color("colorBlack"))
+                                    .frame(width: 30, height: 30)
+                                    .background(Color("colorBrown1"))
+                                    .cornerRadius(7.5)
                                 Text("Currency")
                                 Spacer()
                                 Picker("Currency", selection: $selectedCurrency) {
@@ -48,6 +53,19 @@ struct WelcomeView: View {
                             }
                         }
                         
+                        HStack {
+                            Text(appVM.roundingNumbers ? "0" : "0.0")
+                                .foregroundColor(Color("colorBlack"))
+                                .frame(width: 30, height: 30)
+                                .background(Color(Colors.colorGreen))
+                                .cornerRadius(7.5)
+                            Toggle("Rounding numbers", isOn: $appVM.roundingNumbers)
+                        }
+                        .padding()
+                        .frame(maxWidth: .infinity, maxHeight: 50)
+                        .background(Color(Colors.colorBalanceBG))
+                        .cornerRadius(12.5)
+                        
                         VStack(alignment: .leading) {
                             HStack {
                                 Toggle("Basic categories", isOn: $createCategories)
@@ -57,8 +75,8 @@ struct WelcomeView: View {
                                 Image(systemName: "exclamationmark.shield")
                                 Text("Note: Enabling this feature will create base categories for expenses and income.")
                             }
-                                .font(.subheadline)
-                                .fontWeight(.ultraLight)
+                            .font(.subheadline)
+                            .fontWeight(.ultraLight)
                         }
                         .padding()
                         .frame(maxWidth: .infinity, maxHeight: 200)
@@ -88,6 +106,11 @@ struct WelcomeView: View {
             }
             .padding(15)
             .background(Color(Colors.mainBG))
+        }
+        .onChange(of: selectedCurrency) { newCurrency in
+            // Сохраняем символ валюты при изменении выбора
+            appVM.currencySymbol = newCurrency.symbol
+            playFeedbackHaptic(appVM.selectedFeedbackHaptic)
         }
     }
 }

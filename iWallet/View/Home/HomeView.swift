@@ -63,7 +63,7 @@ struct HomeView: View {
                             
                             ForEach(filteredCategoriesArray, id: \.self) { category in
                                 let totalAmount = category.categoryAmount(type: selectedCategoryType)
-                                NavigationLink(destination: TransactionCategoryView(selectedCategory: .constant(category))) {
+                                NavigationLink(destination: TransactionCategoryView(selectedCategory: category)) {
                                     
                                     CategoryItemView(categoryColor: category.color, categoryIcon: category.icon, categoryName: category.name, totalAmount: totalAmount, currencySymbol: appVM.currencySymbol)
                                 }

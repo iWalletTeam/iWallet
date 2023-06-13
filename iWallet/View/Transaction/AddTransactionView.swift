@@ -27,7 +27,7 @@ struct AddTransactionView: View {
                     Section {
                         TextField(selectedType == .expense ? "-100 \(appVM.currencySymbol)" : "+100 \(appVM.currencySymbol)", text: $amount)
                             .font(.title3)
-                            .keyboardType(.numberPad)
+                            .keyboardType(appVM.roundingNumbers ? .numberPad : .decimalPad)
                             .padding()
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                             .background(Color("colorBalanceBG"))
@@ -170,11 +170,9 @@ struct AddTransactionView: View {
                 .padding(.top, 20)
                 
             }
-            .navigationTitle("Addendum")
-            .navigationBarTitleDisplayMode(.inline)
             .scrollDismissesKeyboard(.immediately)
             .background(Color("colorBG"))
-            .navigationBarTitle("", displayMode: .inline)
+            .navigationBarTitle("Addendum", displayMode: .inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {

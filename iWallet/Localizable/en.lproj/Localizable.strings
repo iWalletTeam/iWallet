@@ -65,6 +65,7 @@
 "https://idevnva.com/" = "https://idevnva.com/iwallet";
 "https://t.me/idevnva" = "https://t.me/idevnva";
 "App version: 1.1.5" = "App version: 1.1.5";
+"Rounding numbers" = "Rounding numbers";
 
 //PreviewCard
 "Welcome" = "Welcome!";
@@ -119,3 +120,7 @@
 // PickerCategoryView
 "Categories" = "Categories";
 "Create category" = "Create category";
+
+// EditTransactionView
+"Editing" = "Editing";
+"Edit" = "Edit";
