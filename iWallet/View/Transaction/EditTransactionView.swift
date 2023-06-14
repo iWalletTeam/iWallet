@@ -23,6 +23,11 @@ struct EditTransactionView: View {
     let formatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
+        if AppViewModel().roundingNumbers == true {
+            formatter.maximumFractionDigits = 0
+        } else {
+            formatter.maximumFractionDigits = 2
+        }
         return formatter
     }()
     
