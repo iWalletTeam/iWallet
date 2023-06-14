@@ -134,7 +134,7 @@ struct SettingView: View {
                 }
                 VStack {
                     Image(systemName: "exclamationmark.shield")
-                    Text("App version: 1.1.6")
+                    Text("App version: 1.1.7")
                 }
                 .font(.caption2).bold()
                 .padding()
