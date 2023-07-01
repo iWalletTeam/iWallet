@@ -13,19 +13,27 @@ struct AddTransactionView: View {
     @FocusState private var keyIsFocused: Bool
     
     @State var selectedCategory: Category
-    @State var amount: String = ""
+    @State var amount: Float = 0
     @State var date: Date = Date()
     @State var note: String = ""
     @State var selectedType: CategoryType = .expense
     @State var alertAmount: Bool = false
     @State var alertCategory: Bool = false
     
+    private let formatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 2
+        formatter.zeroSymbol = ""
+        return formatter
+    }()
+    
     var body: some View {
         NavigationStack {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(alignment: .leading) {
                     Section {
-                        TextField(selectedType == .expense ? "-100 \(appVM.currencySymbol)" : "+100 \(appVM.currencySymbol)", text: $amount)
+                        TextField(selectedType == .expense ? "-100 \(appVM.currencySymbol)" : "+100 \(appVM.currencySymbol)", value: $amount, formatter: formatter)
                             .font(.title3)
                             .keyboardType(appVM.roundingNumbers ? .numberPad : .decimalPad)
                             .padding()
@@ -184,7 +192,7 @@ struct AddTransactionView: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        if amount.isEmpty {
+                        if amount == 0 {
                             alertAmount = true
                         } else if selectedCategory.name == "" {
                             alertCategory = true
@@ -193,7 +201,7 @@ struct AddTransactionView: View {
                             selectedCategory = Category()
                         } else {
                             playFeedbackHaptic(appVM.selectedFeedbackHaptic)
-                            transactionVM.saveTransaction(amount: Float(amount) ?? 0, date: date, note: note, type: selectedType, category: selectedCategory)
+                            transactionVM.saveTransaction(amount: amount, date: date, note: note, type: selectedType, category: selectedCategory)
                             dismiss()
                         }
                     } label: {
