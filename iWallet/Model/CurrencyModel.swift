@@ -8,6 +8,7 @@
 import Foundation
 
 enum Currency: String, CaseIterable, Identifiable, Hashable {
+    case aed = "AED"
     case usd = "USD"
     case eur = "EUR"
     case jpy = "JPY"
@@ -45,6 +46,7 @@ enum Currency: String, CaseIterable, Identifiable, Hashable {
     
     var symbol: String {
         let currencySymbols: [Currency: String] = [
+            .aed: "AED",
             .usd: "$",
             .eur: "€",
             .jpy: "¥",
